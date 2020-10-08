@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+#include<string>
+//定义学生的结构体
+struct student
+{
+	string name;
+	int age;
+	int score;
+};
+
+//打印学生函数信息
+//1.值传递
+void printstudent1(struct student s)
+{
+	cout<<"子1函数中  姓名："<<s.name<<"  年龄："<<s.age<<"  分数："<<s.score<<endl;
+}
+
+//2.地址传递
+void printstudent2(struct student *p)//引入指针变量接收地址&s
+{
+	cout<<"子2函数中  姓名："<<p->name<<"  年龄："<<p->age<<"  分数："<<p->score<<endl;
+}
+
+int main()
+{
+	//结构体作为函数的参数
+	//将 学生 传入到一个参数中，打印学生身上的所有信息
+
+	//创建结构体变量
+	struct student s;
+	s.name="陈佳佳";
+	s.age =20;
+	s.score =90;
+
+	struct student *p=&s;
+	
+	
+	printstudent1(s);
+
+	printstudent2(&s);//地址传递，传递地址
+
+	cout<<"main函数中  姓名："<<s.name<<"  年龄："<<s.age<<"  分数："<<s.score<<endl;
+
+	system("pause");
+	
+	return 0;
+}

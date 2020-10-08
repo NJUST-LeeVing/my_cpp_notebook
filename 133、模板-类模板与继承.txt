@@ -1,0 +1,66 @@
+#include<iostream>
+using namespace std;
+#include<string>
+
+//类模板与继承
+template<class T>
+class Base
+{
+public:
+	T a;
+
+};
+
+class Son1 :public Base<int>//父类是类模板，子类必须写出父类中T的类型
+{
+public:
+
+};
+
+void test01()
+{
+	Son1 s1;
+}
+
+//如果想灵活指定父类中T的类型，子类也需要变成模板
+//类模板继承类模板，可以用T2指定父类中T的类型
+template<class T1,class T2>
+class Son2 :public Base<T2>
+{
+public:
+	Son2()
+	{
+		cout << "T1的数据类型类：" << typeid(T1).name() << endl;
+		cout << "T2的数据类型类：" << typeid(T2).name() << endl;
+	}
+
+	T1 obj;//通过模板让Son2类认识T2(这里T1无多大用处，只是用来凑数)
+};
+
+void test02()
+{
+	Son2<int, char>s2;
+	//层层传递，char-->T2(Son2类)-->T(父类)
+
+}
+
+
+
+int main()
+{
+	test01();
+	test02();
+	system("pause");
+
+	return 0;
+}
+
+/*
+子类若是想要继承父类的模板，那么子类也得变成类模板。数据类型可以通过子类传递给父类。
+
+
+疑问：如果父类中的T的数据类型与子类中传给父类的数据重复时，会怎样？
+*/
+
+
+

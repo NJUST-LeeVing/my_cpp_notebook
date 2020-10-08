@@ -1,0 +1,31 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class SayRun {
+public:
+	void operator()(string s) {
+		cout << s << " is Running!" << endl;
+	}
+};
+
+class SayFly {
+public:
+	void operator()(string s) {
+		cout << s <<" is Flying!" << endl;
+	}
+};
+
+template<class T>
+void test(T func, string s) {
+	func(s);
+}
+
+int main() {
+	SayFly sf;
+	SayRun sr;
+	test(sr, "liwen");
+
+	system("pause");
+	return 0;
+}

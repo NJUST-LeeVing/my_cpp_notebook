@@ -1,0 +1,240 @@
+#include<iostream>
+using namespace std;
+
+/*案例：
+设计一个圆类、一个点类，计算点和圆的位置关系
+*/
+
+//点类
+class point
+{
+public:
+	//设置X
+	void setX(double x)
+	{
+		X=x;
+	}
+	//获取X
+	double giveX()
+	{
+		return X;
+	}
+	//设置Y
+	void setY(double y)
+	{
+		Y=y;
+	}
+	//获取
+	double giveY()
+	{
+		return Y;
+	}
+private:
+	double X;
+	double Y;
+};
+
+
+
+//圆类
+class circle
+{
+public:
+	//设置半径
+	void setR(double r)
+	{
+		R=r;
+	}
+	//获取半径
+	double giveR()
+	{
+		return R;
+	}
+	//设置圆心
+	void setCenter(point center)
+	{
+		Center=center;
+	}
+	//获取圆心
+	point giveCenter()
+	{
+		return Center;
+	}
+
+private:
+	double R;
+	point Center;
+};
+
+
+//判断点和圆的关系
+void isincircle(circle &c,point &p)
+{
+	double dd=(c.giveCenter ().giveX ()-p.giveX ())*(c.giveCenter ().giveX ()-p.giveX ())+(c.giveCenter ().giveY ()-p.giveY ())*(c.giveCenter ().giveY ()-p.giveY ());
+	double rr=c.giveR ()*c.giveR ();
+	if(dd<rr) 
+	{
+		cout<<"点在圆内。"<<endl;
+	}
+	else if(dd==rr)//注意：==才是等号
+	{
+		cout<<"点在圆上。"<<endl;
+	}
+	else if(dd>rr) //无论如何，程序判断该项正确，其余两项错误。为什么？
+	{
+		cout<<"点在圆外。"<<endl;
+	}
+}
+int main()
+{
+	circle c;//实例化圆
+	point center;//实例化圆心
+	c.setR (10);
+	center.setX (10);
+	center.setY (0);
+	c.setCenter  (center);//		太TM重要！！！
+	
+	//实例化点
+	point p;
+	p.setX (0);
+	p.setY (0);
+
+	//判断关系
+	isincircle(c,p);
+	
+	system("pause");
+	
+	return 0;
+}
+
+
+
+
+
+头文件：circle.h
+#pragma once//必须记住格式
+#include<iostream>
+using namespace std;
+#include"point.h"//circle类中包含point类，须将point类的头文件包含进来
+
+class circle
+{
+public:
+	void setR(double r);//注意写分号;
+	
+	double giveR();
+	
+	void setCenter(point center);
+	
+	point giveCenter();
+	
+private:
+	double R;
+	point Center;
+};
+
+
+
+头文件：point.h
+#pragma once
+#include<iostream>
+using namespace std;
+
+class point
+{
+public:
+	
+	void setX(double x);
+
+	double giveX();
+
+	void setY(double y);
+	
+	double giveY();
+	
+private:
+	double X;
+	double Y;
+};
+
+源文件：circle.cpp
+#include"circle.h"
+
+void circle::setR(double r)
+{
+	R=r;
+}
+double circle::giveR()
+{
+	return R;
+}
+void circle::setCenter(point center)
+{
+	Center=center;
+}
+point circle::giveCenter()
+{
+	return Center;
+}
+
+源文件：point.cpp
+#include "point.h"
+
+//只需要留下函数的实现
+void point::setX(double x)//point::  表示setX(double x)是在point作用域下的成员函数
+{
+	X=x;
+}
+double point::giveX()
+{
+	return X;
+}
+void point::setY(double y)
+{
+	Y=y;
+}
+double point::giveY()
+{
+	return Y;
+}
+
+
+main函数中的源文件：
+using namespace std;//记住格式
+#include"point.h"
+#include"circle.h"
+
+void isincircle(circle &c,point &p)
+{
+	double d=(c.giveCenter ().giveX ()-p.giveX ())*(c.giveCenter ().giveX ()-p.giveX ())+(c.giveCenter ().giveY ()-p.giveY ())*(c.giveCenter ().giveY ()-p.giveY ());
+	if(d>(c.giveR ()*c.giveR ())) 
+	{
+		cout<<"点在圆外。"<<endl;
+	}
+	else if(d==(c.giveR ()*c.giveR ()))
+	{
+		cout<<"点在圆上。"<<endl;
+	}
+	else if(d<(c.giveR ()*c.giveR ()))
+	{
+		cout<<"点在圆内。"<<endl;
+	}
+}
+int main()
+{
+	circle c;
+	point center;
+	c.setR (10);
+	center.setX (10);
+	center.setY (0);
+	c.setCenter  (center);//		太TM重要！！！
+	point p;
+	p.setX (1);
+	p.setY (0);
+
+	isincircle(c,p);
+
+	system("pause");
+	
+	return 0;
+}

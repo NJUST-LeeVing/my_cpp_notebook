@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+
+//打印数据的函数
+void showvalue(const/*限制形参*/ int & val)
+{
+	//val=1000;错误操作
+	cout<<"val="<<val<<endl;
+}
+int main()
+{
+	//常量引用
+	//使用场景：用来修饰形参，防止误操作
+	int a=10;
+	//int &ref=10;引用必须引用栈区或堆区上的数据，该操作错误
+	const int &ref=10;//加上const后，编译器将代码修改为 int temp=10; int &ref=temp; 因此原名无人知晓，由编译器起名，只能操作别名。
+	//ref=20;//加入const之后，变为只读，不可修改
+
+	int b=100;
+	showvalue(b);
+
+	system("pause");
+
+	return 0;
+}

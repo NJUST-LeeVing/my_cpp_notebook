@@ -1,0 +1,329 @@
+//教材案例：
+#include<iostream>
+using namespace std;
+#include<string>
+//多态的优点：代码组织结构清晰、可读性强、利于前期和后期的扩展以及维护
+
+
+//案例描述：分别利用普通写法和多态技术，设计实现两个操作数进行运算的计算器类（自定义四则运算）
+
+
+//普通写法
+class Calculator
+{
+public:
+	int getResult(string oper)
+	{
+		if(oper=="+")
+		{
+			return m_Num1+m_Num2;
+		}
+
+		else if(oper=="-")
+		{
+			return m_Num1-m_Num2;
+		}
+
+		else if(oper=="*")
+		{
+			return m_Num1*m_Num2;
+		}
+		//如果想拓展新的功能，需要修改源码。
+		//在真实开发中 提倡 开闭原则：对拓展进行开放，对修改进行关闭。
+
+		
+	}
+
+	int m_Num1;
+	int m_Num2;
+
+};
+
+//利用多态实现计算器
+
+//实现计算器的基类
+class BaseCalculator
+{
+public:
+
+	virtual int getResult()
+	{
+		return 0;
+	}
+	int m_Num1;
+	int m_Num2;
+};
+
+//设计 加法计算器类
+class AddCalculator:public BaseCalculator
+{
+public:
+	int getResult()
+	{
+		return m_Num1+m_Num2;
+	}
+};
+
+//设计 减法计算器类
+class SubCalculator:public BaseCalculator
+{
+public:
+	int getResult()
+	{
+		return m_Num1-m_Num2;
+	}
+};
+
+//设计 乘法计算器类
+class MulCalculator:public BaseCalculator
+{
+public:
+	int getResult()
+	{
+		return m_Num1*m_Num2;
+	}
+};
+
+void test01()
+{
+	Calculator c;
+	c.m_Num1 =10;
+	c.m_Num2 =20;
+	cout<<c.m_Num1 <<"+"<<c.m_Num2 <<"="<<c.getResult("+")<<endl;//c.getResult("+") 实际上是自定义加法。
+
+	cout<<c.m_Num1 <<"-"<<c.m_Num2 <<"="<<c.getResult("-")<<endl;
+
+	cout<<c.m_Num1 <<"*"<<c.m_Num2 <<"="<<c.getResult("*")<<endl;
+
+}
+
+void test02()
+{
+	//多态的使用条件：
+	//父类的指针或引用指向子类的对象
+
+	//加法运算
+	BaseCalculator *p1 =new AddCalculator;//相当于在堆区创建了一个AddCalculator类的对象！易错！
+	p1->m_Num1 =10;
+	p1->m_Num2 =20;
+	cout<<p1->m_Num1 <<"+"<<p1->m_Num2 <<"="<<p1->getResult ()<<endl;
+	//用完后手动释放堆区内存
+	delete p1;
+
+	//减法运算
+	BaseCalculator *p2=new SubCalculator;
+	p2->m_Num1 =30;
+	p2->m_Num2 =40;
+	cout<<p2->m_Num1 <<"-"<<p2->m_Num2 <<"="<<p2->getResult ()<<endl;
+	delete p2;
+}
+
+int main()
+{
+	
+	test02();
+	system("pause");
+	return 0;
+}
+
+
+
+
+
+
+//我的案例：
+#include<iostream>
+using namespace std;
+#include<string>
+
+//案例：自定义运算符“&”和“&&”进行运算。
+
+//普通写法
+class Father
+{
+public:
+	
+	Father(double a,double b)
+	{
+		m_Num1=a;
+		m_Num2=b;
+	}
+	
+	double get(string oper)
+	{
+		if(oper=="&")
+		{
+			return (2*m_Num1+3*m_Num2) ;
+		}
+		else if(oper=="&&")
+		{
+			return (m_Num1+2*m_Num2);
+		}
+		
+	}
+	double m_Num1;
+	double m_Num2;
+};
+
+void test01()
+{
+	Father f(10,20);
+	cout<<f.m_Num1 <<"&"<<f.m_Num2 <<"="<<f.get ("&")<<endl;
+	cout<<f.m_Num1 <<"&&"<<f.m_Num2 <<"="<<f.get ("&&")<<endl;
+}
+
+
+//多态写法
+class Base
+{
+public:
+	virtual double get(string oper)
+	{
+		return 0;
+	}
+	int m_Num1;
+	int m_Num2;
+};
+//实现自定义的“&”运算
+class Calculate1:public Base
+{
+public:
+	double get(string oper)
+	{
+		return (2*m_Num1+3*m_Num2);
+	}
+};
+
+//实现自定义的“&&”运算
+class Calculate2:public Base
+{
+public:
+	double get(string oper)
+	{
+		return (m_Num1+2*m_Num2);
+	}
+};
+
+void test02()
+{
+	//实现“&”运算
+	Base *b=new Calculate1;
+	cout<<b->m_Num1 <<"&"<<b->m_Num2 <<"="<<b->get ("&")<<endl;
+	delete b;
+	//实现“&&”运算
+	Base *B=new Calculate2;
+	cout<<B->m_Num1 <<"&&"<<B->m_Num2 <<"="<<B->get ("&&")<<endl;
+	delete B;
+}
+
+int main()
+{
+	test02();
+
+	system("pause");
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+//以下是一个错误的写法。以下的写法忽略的多态的使用条件。
+
+#include<iostream>
+using namespace std;
+#include<string>
+
+//普通写法
+class Father
+{
+public:
+	
+	Father(double a,double b)
+	{
+		m_Num1=a;
+		m_Num2=b;
+	}
+	
+	double get(string oper)
+	{
+		if(oper=="&")
+		{
+			return (2*m_Num1+3*m_Num2) ;
+		}
+		else if(oper=="&&")
+		{
+			return (m_Num1+2*m_Num2);
+		}
+		
+	}
+	double m_Num1;
+	double m_Num2;
+	//如果想拓展新的功能，需要修改源码。
+	//在真实开发中 提倡 开闭原则：对拓展进行开放，对修改进行关闭。
+	
+};
+
+//多态写法
+class Base
+{
+public:
+	virtual double get(string oper)
+	{
+		return 0;
+	}
+	int m_Num1;
+	int m_Num2;
+};
+//实现自定义的“&”运算
+class Calculate1:public Base
+{
+public:
+	double get(string oper)
+	{
+		if(oper=="&")
+		{
+			return (2*m_Num1+3*m_Num2);
+		}
+	}
+};
+
+//实现自定义的“&&”运算
+class Calculate2:public Base
+{
+public:
+	double get(string oper)
+	{
+		if(oper=="&&")
+		{
+			return (m_Num1+2*m_Num2);
+		}
+	}
+};
+
+void test01()
+{
+	Father f(10,20);
+	cout<<f.m_Num1 <<"&"<<f.m_Num2 <<"="<<f.get ("&")<<endl;
+	cout<<f.m_Num1 <<"&&"<<f.m_Num2 <<"="<<f.get ("&&")<<endl;
+}
+
+void test02()
+{
+	Base b;
+	cout<<b.m_Num1 <<"&"<<b.m_Num2 <<"="<<b.get ("&")<<endl;
+	cout<<b.m_Num1 <<"&&"<<b.m_Num2 <<"="<<b.get ("&&")<<endl;
+}
+
+int main()
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}

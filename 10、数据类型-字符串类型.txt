@@ -1,0 +1,18 @@
+//作用：用于表示一串字符
+#include<iostream>
+using namespace std;
+#include<string> //使用C++风格字符串时一定要使用该头文件
+int main()
+{
+	//C语言风格
+	char a[] ="李文";
+	cout<<"a="<<a<<endl;
+	
+	//C++语言风格
+	string b="李海龙";
+	cout<<"b="<<b<<endl;
+	
+	system("pause");
+	
+	return 0;
+}

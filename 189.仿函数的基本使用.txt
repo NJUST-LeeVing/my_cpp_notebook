@@ -1,0 +1,63 @@
+/*本节目标：
+ *掌握仿函数怎么写
+ *仿函数可以用于统计函数调用的次数
+ *仿函数的函数对象可以作为参数
+*/
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+class MyAdd {
+public:
+	int operator() (int v1, int v2) {
+		return v1 + v2;
+	}
+};
+
+class MyPrint {
+public:
+	MyPrint() {
+		this->count = 0;
+	}
+	void operator() (string test) {
+		cout << test << endl;
+		count++;
+	}
+	int count;
+};
+
+void doPrint(MyPrint& mp, string s) {
+	mp(s);
+}
+
+void test01() {
+	MyAdd myAdd;
+	cout << myAdd(10, 10) << endl;
+}
+
+void test02() {
+	MyPrint myPrint;
+	myPrint("hello,world!");
+	myPrint("hello,world!");
+	myPrint("hello,world!");
+
+	cout << "myPrint()函数调用了" << myPrint.count << "次" << endl;
+}
+
+void test03() {
+	MyPrint myPrint;
+	doPrint(myPrint, "hello, C++");
+}
+
+int main(){
+	//test01();
+
+	//test02();
+
+	test03();
+	
+	system("pause");
+
+	return 0;
+}

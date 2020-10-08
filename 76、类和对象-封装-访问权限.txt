@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+/*访问权限有三种：
+公共权限（public）：成员（成员属性和成员函数）类内可以访问，类外也可以访问。
+保护权限（protected）：成员 类内可以访问，类外不可以访问。“儿子”也可以访问“父亲”中的保护内容
+私有权限（private）：成员 类内可以访问，类外不可以访问。“儿子”不可以访问“父亲”的私有内容
+*/
+class person
+{
+public://公共权限
+	string name;
+protected://保护权限
+	string car;
+private://私有权限
+	int password;
+public:
+	void func()
+	{
+		name="张三";
+		car="法拉利";
+		password=666666;
+	}
+
+};
+int main()
+{
+	//实例化锯腿对象
+	person p1;
+	p1.name ="李文";
+	/*
+	p1.car ="拖拉机";//保护权限的内容在类外无法访问
+	p1.password =123456;//私有权限的内容在类外也无法访问
+	*/
+	p1.func ();
+	system("pause");
+
+	return 0;
+}

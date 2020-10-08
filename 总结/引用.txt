@@ -1,0 +1,84 @@
+#include<iostream>
+using namespace std;
+
+//引用
+
+//引用的语法
+void test01()
+{
+	int a = 10;
+	int b = 20;
+	//引用必须初始化
+	int& c1;
+
+	//引用不能被赋值
+	int& c2 = 20;
+
+	int& c3 = a;
+
+	//引用只能指向一个值
+	&c3 = b;
+	//但是引用可以修改值
+	c3 = b;
+}
+
+//引用实现地址传递
+void test02_1(int& a, int& b) {}
+
+void test02_2()
+{
+	int a = 10;
+	int b = 20;
+	test02_1(a, b);
+}
+
+//引用作为函数的返回值
+int& test03_1()
+{
+	//不要返回局部变量的引用
+	int a = 10;
+	return a;	
+}
+
+int& test03_2()
+{	
+	static int b = 10;
+	return b;
+}
+
+void test03_3()
+{
+	//返回值为引用可以使函数的调用作为左值
+	int& a = test03_2();
+	test03_2() = 100;
+	cout << a << endl;
+}
+
+//常量引用
+void test04_1(const int& a)
+{
+	a = 100;//防止修改a的内容
+	cout << a << endl;
+}
+
+void test04_2()
+{
+	int a = 10;
+	test04_1(a);
+}
+
+//引用的本质：指针常量
+void test05()
+{
+	int a = 10;
+
+	//两者等价
+	int& b = a;
+	int* const p = &a;
+}
+
+int main()
+{
+	system("pause");
+	return 0;
+}

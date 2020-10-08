@@ -1,0 +1,15 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//转义字符:作用是显示一些不能显示出来的ASCII字符
+	cout<<"Hello,world!\n";// \n是换行符
+	
+	cout<<"\\"<<endl;// 输入\\输出\
+
+	cout<<"李海龙李海龙牛牛\thello,world!"<<endl; //水平制表符（8个位置）
+	cout<<"aa\thello,world!"<<endl;//一个\t表示将\t前的内容设置为8个字符宽，如果\t前超过8个字符，则设置为16个字符宽，以此类推
+	system("pause");
+	
+	return 0;
+}

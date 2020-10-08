@@ -1,0 +1,231 @@
+//选择结构 单行if语句
+#include<iostream>
+using namespace std;
+int main()
+{
+	while(1)
+	{
+		cout<<"请输入您的高考分数：";
+		double score=0;
+		cin>>score;
+		if(score>=700&&score<=750)
+		{
+			cout<<"恭喜您被清华大学录取。"<<endl;
+		}
+		else if(score<700&&score>586)
+		{
+			cout<<"恭喜您被南京理工大学录取。"<<endl;
+		}
+		else if(score>0&&score<=586)
+		{
+			cout<<"恭喜您被汶川中学录取。"<<endl;
+		}
+		else
+		{
+			cout<<"输入无效。"<<endl;
+		}
+		cout<<"输入0退出程序，输入任意键继续使用"<<endl;
+		double select;
+		cin>>select;
+		if(select==0)
+		{
+			break;
+		}
+		else if(select==1)
+		{
+			cout<<"欢迎您继续使用。"<<endl;
+		}
+	
+	}
+
+//选择结构 多行if语句
+#include<iostream>
+using namespace std;
+int main()
+{
+	//用户输入分数，如果分数大于586，视为考上南京理工大学，在屏幕上输出，如果不大于586，则输出恭喜你喜提阿师专录取通知书
+
+	//1、输入考试分数
+	int score=0;
+	cout<<"请输入你的高考分数"<<endl;
+	cin>>score;
+
+	//2、提示用户输入分数
+	cout<<"请你的高考分数为："<<score<<endl;
+
+	//3、判断
+	if(score>586)
+	{
+		cout<<"恭喜你考上南京理工大学"<<endl;
+	}
+	else
+	{
+		cout<<"恭喜你喜提阿师专录取通知书"<<endl;
+	}
+
+	
+	system("pause");
+	return 0;
+}
+
+
+
+//选择结构 多条件if语句
+#include<iostream>
+using namespace std;
+int main()
+{
+	//一般，score在左
+	//1、提示用户输入分数
+	int score=0;
+	cout<<"请输入你的高考分数"<<endl;
+	cin>>score;
+	
+	//2、显示用户输入的分数
+	cout<<"你输入的分数为："<<score<<endl;
+	
+	//3、判断
+	if(score>750)
+	{
+		cout<<"输入分数无效"<<endl;
+	}
+	else if(score>700)
+	{
+		cout<<"恭喜你考上清华大学"<<endl;
+	}
+	else if(score>650)
+	{
+		cout<<"恭喜你考上电子科技大学"<<endl;
+	}
+	else if(score>586)
+	{
+		cout<<"恭喜你考上南京理工大学"<<endl;
+	}
+	else if(score>0)
+	{
+		cout<<"就你这成绩还是去工地上搬砖吧!"<<endl;
+	}
+	else 
+	{
+		cout<<"输入分数无效"<<endl;
+	}
+
+	system("pause");
+	
+	return 0;
+}
+
+
+//选择结构 嵌套if语句
+#include<iostream>
+using namespace std;
+int main()
+{
+	//一般，score在左
+	//1、提示用户输入分数
+	int score=0;
+	cout<<"请输入你的高考分数"<<endl;
+	cin>>score;
+	
+	//2、显示用户输入的分数
+	cout<<"你输入的分数为："<<score<<endl;
+	
+	//3、判断
+	if(score>750)
+	{
+		cout<<"输入分数无效"<<endl;
+	}
+	else if(score>586)
+	{
+		cout<<"恭喜你考上大学"<<endl;
+		if(score>700)
+		{
+			cout<<"你被清华大学录取"<<endl;
+		}
+		else if(score>650)
+		{
+			cout<<"你被电子科技大学录取"<<endl;
+		}
+		else 
+		{
+			cout<<"你被南京理工大学录取"<<endl;
+		}
+	
+	}
+	
+	else if(score>0)
+	{
+		cout<<"就你这成绩还是去工地上搬砖吧!"<<endl;
+	}
+	else 
+	{
+		cout<<"输入分数无效"<<endl;
+	}
+
+
+
+//选择结构 练习题
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a=0;
+	int b=0;
+	int c=0;
+	cout<<"请输入大猪的重量："<<endl;
+	cin>>a;
+	cout<<"请输入二猪的重量："<<endl;
+	cin>>b;
+	cout<<"请输入三猪的重量："<<endl;
+	cin>>c;
+	if(a>b)
+	{
+		if(a>c)
+		{
+			cout<<"大猪是最重的"<<endl;
+		}
+		else if(a<c)
+		{
+			cout<<"三猪是最重的"<<endl;
+		}
+		else if(a=c)
+		{
+			cout<<"大猪和三猪都是最重的"<<endl;
+		}
+	
+	}
+
+	else if(a<b)
+	{
+		if(b>c)
+		{
+			cout<<"二猪是最重的"<<endl;
+		}
+		else if(b<c)
+		{
+			cout<<"三猪是最重的"<<endl;
+		}
+		else if(b=c)
+		{
+			cout<<"二猪和三猪都是最重的"<<endl;
+		}
+	}
+	else if(a=b)
+	{
+		if(a>c)
+		{
+			cout<<"大猪和二猪都是最重的"<<endl;
+		}
+		else if(a<c)
+		{
+			cout<<"三猪是最重的"<<endl;
+		}
+		else if(a=c)
+		{
+			cout<<"它们都是最重的"<<endl;	
+		}
+	}
+
+	system("pause");
+	return 0;
+}		

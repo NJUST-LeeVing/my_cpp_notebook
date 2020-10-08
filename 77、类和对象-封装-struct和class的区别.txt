@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+
+//struct和class的区别：struct默认权限是公共（public）,class默认权限是私有（private）。其余方面两者几乎相同
+
+class C1
+{
+	int m_a;//默认权限为私有
+};
+struct C2
+{
+	int m_b;//默认权限为公共
+};
+int main()
+{
+	C1 c1;
+	C2 c2;
+	//c1.m_a =100;操作错误
+	c2.m_b =200;
+
+	system("pause");
+
+	return 0;
+}

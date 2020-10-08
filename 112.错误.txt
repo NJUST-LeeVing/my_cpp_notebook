@@ -1,0 +1,305 @@
+//创建一个员工，就给他分配一个指针worker=new Boss(id,name,did);
+//通过不断创建和删除数组达到动态数组的效果
+#include<iostream>
+using namespace std;
+#include<string>
+//功能区类
+class WokerManager
+{
+public:
+	//构造函数
+	WokerManager()
+	{
+
+		//this->m_Array=NULL;  //为什么？？？？？？
+		this->m_StuffNum=0;
+
+	}
+
+	//展示菜单
+	void ShowMenu()
+	{
+		cout << "********************************************" << endl;
+		cout << "*********  欢迎使用职工管理系统！ **********" << endl;
+		cout << "*************  0.退出管理程序  *************" << endl;
+		cout << "*************  1.增加职工信息  *************" << endl;
+		cout << "*************  2.显示职工信息  *************" << endl;
+		cout << "*************  3.删除离职职工  *************" << endl;
+		cout << "*************  4.修改职工信息  *************" << endl;
+		cout << "*************  5.查找职工信息  *************" << endl;
+		cout << "*************  6.按照编号排序  *************" << endl;
+		cout << "*************  7.清空所有文档  *************" << endl;
+		cout << "********************************************" << endl;
+		cout << endl;
+	}
+
+	//记录文件中人数
+	int m_StuffNum;
+
+	//记录职工数组的指针
+	//Worker ** m_Array;
+
+	////添加职工
+	//void Add()
+	//{
+	//	cout<<"请输入添加职工的数量：";
+	//	int addnum=0;
+	//	cin>>addnum;
+	//	if(addnum>0)
+	//	{
+	//		//计算添加新的空间大小
+	//		int newsize=this->m_StuffNum+addnum;//新空间人数=原来记录的人数+新增人数
+
+	//		//开辟新空间
+	//		Worker **newspace=new Worker*[newsize];
+
+	//		//将原来空间下的数据拷贝到新空间下
+	//		if(m_Array!=NULL)
+	//		{
+	//			for(int i=0;i<this->m_StuffNum;i++)
+	//			{
+	//				newspace[i]=m_Array[i];
+	//			}
+	//		}
+
+	//		//批量添加新数据
+	//		for(int i=0;i<addnum;i++)
+	//		{
+	//			int id;//职工编号
+	//			string name;//职工姓名
+	//			int department;//部门选择
+	//			cout<<"请输入第"<<i+1<<"个新职工的编号："<<endl;
+	//			cin>>id;
+	//			cout<<"请输入第"<<i+1<<"个新职工的姓名："<<endl;
+	//			cin>>name;
+	//			cout<<"请输入第"<<i+1<<"个新职工的岗位编号   1、普通职工  2、经理  3、老板"<<endl;
+	//			cin>>department;
+	//			
+	//			Worker *worker=NULL;
+	//			
+	//			switch(department)
+	//			{
+	//			case 1:
+	//				worker=new Employee(id,name,1);
+	//				break;
+	//			case 2:
+	//				worker=new Manager(id,name,2);
+	//				break;
+	//			case 3:
+	//				worker=new Boss(id,name,3);
+	//				break;
+	//			default:
+	//				break;
+	//			}
+	//			//将创建的职工指针保存到数组中
+	//			newspace[this->m_StuffNum+i]=worker;
+	//		}
+	//		
+	//		//释放原有的空间
+	//		delete [] this->m_Array;
+
+	//		//更改新空间的指向
+	//		this->m_Array=newspace;
+
+	//		//更新新的职工人数
+	//		this->m_StuffNum=newsize;
+
+	//		cout<<"成功添加了"<<addnum<<"个新职工！"<<endl;
+
+	//	}
+	//	else
+	//	{
+	//		cout<<"输入有误！"<<endl;
+	//	}
+
+	//}
+
+
+	//退出功能
+	void ExitSystem()
+	{
+		cout<<"欢迎下次使用！"<<endl;
+		system("pause");
+		exit(0);//退出程序
+	}
+
+
+	//析构函数
+	~WokerManager()
+	{}
+};
+
+
+//职工抽象类
+class Worker
+{
+public:
+	//显示个人信息
+	virtual void ShowInformation()=0;
+	//获取岗位名称
+	virtual string GetDepartment()=0;
+	//职工编号
+	int m_Id;
+	//职工姓名
+	string m_Name;
+	//部门编号
+	int m_Department;
+};
+
+//普通职工类
+class Employee:public Worker
+{
+public:
+	//构造函数
+	Employee(int id,string name,int department)
+	{
+		this->m_Id=id;
+		this->m_Name=name;
+		this->m_Department=department;
+	
+	}
+	//显示个人信息
+	virtual void ShowInformation()
+	{
+		cout<<"职工编号："<<this->m_Id
+			<<"\t职工姓名："<<this->m_Name
+			<<"\t部门编号："<<this->m_Department
+			<<"\t岗位："<<this->GetDepartment()
+			<<"岗位职责：完成经理交代的任务。"<<endl;
+	}
+	//获取岗位名称
+	virtual string GetDepartment()
+	{
+		return string("普通员工");
+	}
+	
+};
+
+//经理类
+class Manager:public Worker
+{
+public:
+	//构造函数
+	Manager(int id,string name,int department)
+	{
+		this->m_Id=id;
+		this->m_Name=name;
+		this->m_Department=department;
+	
+	}
+	//显示个人信息
+	virtual void ShowInformation()
+	{
+		cout<<"职工编号："<<this->m_Id
+			<<"\t职工姓名："<<this->m_Name
+			<<"\t部门编号："<<this->m_Department
+			<<"\t岗位："<<this->GetDepartment()
+			<<"岗位职责：完成老板交代的任务，并下发给员工。"<<endl;
+	}
+	//获取岗位名称
+	virtual string GetDepartment()
+	{
+		return string("经理");
+	}
+	
+};
+
+//老板类
+class Boss:public Worker
+{
+public:
+	//构造函数
+	Boss(int id,string name,int department)
+	{
+		this->m_Id=id;
+		this->m_Name=name;
+		this->m_Department=department;
+	
+	}
+	//显示个人信息
+	virtual void ShowInformation()
+	{
+		cout<<"职工编号："<<this->m_Id
+			<<"\t职工姓名："<<this->m_Name
+			<<"\t部门编号："<<this->m_Department
+			<<"\t岗位："<<this->GetDepartment()
+			<<"岗位职责：统筹全局。"<<endl;
+	}
+	//获取岗位名称
+	virtual string GetDepartment()
+	{
+		return string("老板");
+	}
+	
+};
+
+
+
+
+
+int main()
+{
+	////测试代码
+	//Worker *worker=NULL;
+	//worker=new Employee(1,"张三",1);
+	//worker->ShowInformation();
+	//delete worker;
+
+	//worker=new Manager(2,"王五",2);
+	//worker->ShowInformation();
+	//delete worker;
+
+	//worker=new Boss(3,"李文",3);
+	//worker->ShowInformation();
+	//delete worker;
+
+
+	//实例化管理者对象
+	WokerManager wm;
+	int choice;
+
+	while(true)
+	{
+		//调用展示菜单成员选择
+		wm.ShowMenu();
+		cout<<"请输入您的选项：";
+		cin>>choice;
+
+		switch(choice)
+		{
+		case 0://退出系统
+			wm.ExitSystem();
+			break;
+		case 1://增加职工
+			break;
+		case 2://显示职工
+			//wm.Add();
+			break;
+		case 3://删除职工
+			break;
+		case 4://修改职工
+			break;
+		case 5://查找职工
+			break;
+		case 6://排序职工
+			break;
+		case 7://清空文档
+			break;
+		default:
+			system("cls");
+			break;
+		}
+	
+	}
+	system("pause");
+
+	return 0;
+}
+
+
+/*
+职工的分类为：普通员工、经理、老板
+将三种职工抽象到一个类（Woeker）中，利用多态管理不同的职工
+职工的属性是：职工编号、职工姓名、职工所在的部门编号
+职工的行为是：岗位职责信息描述、获取岗位名称
+*/

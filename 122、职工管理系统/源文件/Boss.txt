@@ -1,0 +1,18 @@
+#include"Boss.h"
+
+//构造函数
+Boss::Boss(int id,string name,int department)
+{}
+//显示个人信息
+void Boss::ShowInformation()
+{
+	cout<<"职工编号："<<this->m_Id 
+	<<"\t职工姓名："<<this->m_Name 
+	<<"\t岗位："<<this->GetDepartmentName()
+	<<"\t职责：管理所有事物。"<<endl;
+}
+//获取岗位名称
+string Boss::GetDepartmentName()
+{
+	return string("老板");
+}

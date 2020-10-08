@@ -1,0 +1,62 @@
+#include<iostream>
+using namespace std;
+#include<map>
+
+void PrintMap(map<int,int>&m)
+{
+	for (map<int, int>::iterator it = m.begin(); it != m.end(); it++)
+	{
+		cout << "key=" << (*it).first << "  value=" << (*it).second << endl;
+	}
+	cout << endl;
+
+};
+
+
+//map的插入和删除
+
+//插入
+void Insert_Delete()
+{
+	map<int, int>m1;
+	//插入一个值
+	//第一种
+	m1.insert(pair<int, int>(1, 10));//必须掌握
+	//第二种
+	m1.insert(make_pair(2, 20));
+	//第三种
+	m1.insert(map<int,int>::value_type(3,30));//麻烦
+	//第四种
+	m1[4] = 40;
+	//不建议用[]插入，但是可以用[]访问到value值
+	cout << "m1的第四个元素的value值为：" << m1[4] << endl;
+
+
+	PrintMap(m1);
+
+
+	//删除
+	m1.erase(m1.begin());
+	PrintMap(m1);
+
+	m1.erase(3);//可以通过key值删除元素
+	PrintMap(m1);
+
+	//清空
+	cout << "清空后：";
+	m1.erase(m1.begin(), m1.end());
+	//m1.clear();//也可以
+	PrintMap(m1);
+
+
+}
+
+
+int main()
+{
+	Insert_Delete();
+	system("pause");
+
+	return 0;
+
+}

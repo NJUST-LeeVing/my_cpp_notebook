@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<string>
+
+//vector容器中存放自定义的数据类型
+class Person
+{
+public:
+	Person(string name,int age)
+	{
+		this->m_Name = name;
+		this->m_Age = age;
+	}
+
+	string m_Name;
+	int m_Age;
+};
+
+
+void test01()
+{
+	Person p1("李文",19);
+	Person p2("Dennis",39);
+	vector<Person> v;
+
+	//向容器中添加数据
+	v.push_back(p1);
+	v.push_back(p2);
+	
+	//遍历容器中的数据
+	for (vector<Person>::iterator it = v.begin(); it != v.end(); it++)//括号<>里是Person类型，所以*it就是Person类型的指针！it指向的是括号<>中的类型。
+	{
+		cout << "姓名：" << (*it).m_Name << "  年龄：" << (*it).m_Age << endl;//*it是Person类型
+		cout << "姓名：" << it->m_Name << "  年龄：" << it->m_Age << endl;//it是指针
+	}
+}
+
+//自定义对象的指针
+void test02()
+{
+	Person p1("李文", 19);
+	Person p2("Dennis", 39);
+	vector<Person*> v;
+
+	//向容器中添加数据
+	v.push_back(&p1);//不要写成  v->push_back(&p1);
+	v.push_back(&p2);
+
+	//遍历容器中的数据
+	for (vector<Person*>::iterator it = v.begin(); it != v.end(); it++)//括号<>里是Person*类型，所以*it就是Person*类型的指针！
+	{
+		cout << "::姓名：" << (*it)->m_Name << "  ::年龄：" << (*it)->m_Age << endl;//*it是Person*类型的数据而不是指针！
+		//cout << "::姓名：" << **it.m_Name << "  ::年龄：" << **it.m_Age << endl;//一个错误写法
+		
+	}
+}
+
+int main()
+{
+	test02();
+	system("pause");
+
+	return 0;
+}

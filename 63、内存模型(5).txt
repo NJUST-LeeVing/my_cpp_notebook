@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+//1、new的基本语法
+int * func()
+{
+	//在堆区创建一个整型数据10（也就是在堆区开辟一段内存的过程）
+	
+	int* p=new int (10);//new返回的是该数据类型的指针（地址编号） int a;    
+	return p;
+}
+void test01()
+{
+	int* p=func();
+	cout<<*p<<endl;
+	cout<<*p<<endl;
+	//堆区的数据由程序员管理开辟和释放
+	//如果想要释放堆区的数据，利用关键字delete
+	delete p;//注：不是delete *p.必须记住此搭配。
+	cout<<*p<<endl;	 //该内存已经被释放，再次访问就是非法操作
+}
+//2、在堆区利用new开辟数组
+void test02()
+{
+	//在堆区创建10个元素的整型数据的数组的方法  
+	int *arr=new int[10];//10代表数组有10个元素，返回这段内存的首地址
+	for(int i=0;i<10;i++)
+	{
+		arr[i]=i+100;//给10个元素赋值 100~109
+	}
+	for(int j=0;j<10;j++)
+	{
+		cout<<"arr[j]="<<arr[j];
+		cout<<endl;
+	}
+	//释放堆区的数组:必须要加[]
+	delete[]arr;//必须记住此固定搭配
+}
+int main()
+{
+	test01();
+	int *p=func();
+	test02();
+
+	system("pause");
+
+	return 0;
+}

@@ -1,0 +1,56 @@
+#include<iostream> 
+using namespace std;
+int main()
+{
+	//switch语句
+	//给电影打分：9~10 经典  7~8 非常好 5~6一般  5以下 烂片
+
+	//1、提示用户给电影打分
+	int score=0;//只能是int或者char
+	cout<<"请给电影打分:";
+
+	//2、让用户开始打分
+	cin>>score;
+	cout<<"您的评分为："<<score<<"分"<<endl;
+	//3、根据用户的打分结果输出相应评价
+	switch(score)
+	{
+	case 10:
+		cout<<"您认为该电影是经典电影"<<endl;
+		break;//退出当前分支
+
+	case 9:
+		cout<<"您认为该电影是经典电影"<<endl;
+		break;
+
+	case 8:
+		cout<<"您认为该电影非常棒"<<endl;
+		break;
+	
+	case 7:
+		cout<<"您认为该电影非常棒"<<endl;
+		break;
+	
+	case 6:
+		cout<<"您认为该电影一般"<<endl;
+		break;
+	
+	case 5:
+		cout<<"您认为该电影一般"<<endl;
+		break;
+
+	default:
+		cout<<"您认为这是一部烂片"<<endl;
+	
+	}
+
+	/*if 和 switch 语句的区别
+	switch缺点：数据类型只能判断整型或字符型，不能判断一个区间，不能是实型、浮点型
+	switch优点：结构清晰，执行效率高
+	*/
+
+
+	system("pause");
+
+	return 0;
+}

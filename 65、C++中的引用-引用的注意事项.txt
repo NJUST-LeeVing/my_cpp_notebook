@@ -1,0 +1,22 @@
+//本节目标：掌握使用引用过程中常见的错误
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a=10;
+	int c=20;
+	//1、引用必须要初始化
+		//int &b; 错误写法,必须要初始化,及常量指针必须初始化
+		//int &b=a;  正确写法
+	//2、引用一旦初始化就不能更改了，可以写b=c，意思是将c的值赋予b，而不是使用引用。
+	int &b=a;
+	//&b=c;错误写法
+
+	cout<<"a="<<a<<endl;
+	cout<<"b="<<b<<endl;
+	cout<<"c="<<c<<endl;
+
+	system("pause");
+
+	return 0;
+}

@@ -1,0 +1,177 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+
+//打印
+void PrintVector(vector<int>v)
+{
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+//-------------------------------------------------------------
+//构造函数
+void Constructor()
+{
+	vector<int>v1;//默认构造
+	v1.push_back(10);
+	PrintVector(v1);
+
+
+	//通过区间访问进行构造
+	vector<int>v2(v1.begin() + 1, v1.end() - 1);//与51行的代码进行对比
+	PrintVector(v2);
+
+	//n个elem方式构造
+	vector<int>v3(10, 100);//10个100
+
+	//拷贝构造
+	vector<int>v4(v3);
+	PrintVector(v4);
+
+}
+//-------------------------------------------------------------
+
+
+//vector的赋值
+//我的一句话：赋值可以通过=和assign()函数进行操作
+void Assignment()
+{
+	vector<int>v1;
+	v1.push_back(10);
+	PrintVector(v1);
+
+	//vector的赋值
+	vector<int>v2;
+	v2 = v1;
+	PrintVector(v2);
+
+	//通过assign赋值
+	vector<int>v3;
+	v3.assign(v2.begin() + 1, v2.end() - 1);//与25行的代码进行对比
+
+	//n个elem方式赋值
+	vector<int>v4;
+	v4.assign(10, 100);//10个100
+	PrintVector(v4);
+
+}
+//-------------------------------------------------------------
+
+
+//vector容器 容量和大小
+//我的一句话：capacity()，size()，empty()和resize()函数的使用
+//empty()函数的返回值是true或false
+//resize()参数列表第一个代表容量，第二个代表默认填充数值
+void Capacity_Size()
+{
+	vector<int>v1;
+	v1.push_back(10);
+	PrintVector(v1);
+	if (v1.empty())//为真，代表容器为空
+	{
+		cout << "v1为空！" << endl;
+	}
+	else
+	{
+		cout << "v1的容量为：" << v1.capacity() << endl;
+		cout << "v1的大小为：" << v1.size() << endl;
+	}
+
+	//重新指定大小
+	v1.resize(15);//重新设置容器的大小
+	PrintVector(v1);//如果重新设定的比原来的更长，默认用数字0进行填充
+	
+	v1.resize(20, 6);//可以自定义指定默认填充数字为6
+	PrintVector(v1);
+	v1.resize(5);//如果重新指定的比原来的短，多余的部分会被删除
+	PrintVector(v1);
+}
+//-------------------------------------------------------------
+
+
+//vector容器 插入与删除
+void Insert_Delete()
+{
+	vector<int>v1;
+
+	//尾插
+	v1.push_back(10);
+	v1.push_back(20);
+	PrintVector(v1);
+
+	//尾删
+	v1.pop_back();
+	PrintVector(v1);
+
+	//指定位置插入-->插入到参数的前面
+	v1.insert(v1.begin() + 1, 666);
+	PrintVector(v1);
+
+	//指定位置删除
+	v1.erase(v1.begin());
+	PrintVector(v1);
+
+	//清空：删除所有数据
+	v1.clear();
+	PrintVector(v1);
+}
+//-------------------------------------------------------------
+
+
+//vector容器 互换容器
+void Swap()
+{
+	vector<int>v1;
+	for (int i = 0; i < 10; i++)
+	{
+		v1.push_back(i);
+	}
+
+	vector<int>v2;
+	for (int i = 10; i < 0; i--)
+	{
+		v1.push_back(i);
+	}
+
+	v1.swap(v2);//v1和v2互换容器
+	PrintVector(v1);
+}
+
+
+//实际案例
+void Swap01()
+{
+	vector<int>v;
+	for (int i = 0; i < 100000; i++)
+	{
+		v.push_back(i);
+	}
+	cout << "v的容量为：" << v.capacity() << endl;
+	cout << "v的大小为：" << v.size() << endl;
+
+	v.resize(3);//重新指定大小
+	cout << "v的容量为：" << v.capacity() << endl;//容量不变，导致占用了大量资源
+	cout << "v的大小为：" << v.size() << endl;
+
+	//巧用swap收缩内存
+	vector<int>(v).swap(v);
+	cout << "v的容量为：" << v.capacity() << endl;
+	cout << "v的大小为：" << v.size() << endl;
+
+}
+
+//-------------------------------------------------------------
+
+
+int main()
+{
+	Insert_Delete();
+
+	system("pause");
+
+	return 0;
+}

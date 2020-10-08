@@ -1,0 +1,67 @@
+#include<iostream>
+using namespace std;
+#include<string>
+//将成员属性设置为私有
+//1、可以自己控制读写的权限
+//2、可以检测数据的有效性
+
+//设计人类
+class person
+{
+public:
+	
+	//写姓名
+	void setname(string outname)
+	{
+		name=outname;
+	}
+	//读姓名
+	string readname()
+	{
+		return name;
+	}
+	//读年龄
+	int readage()
+	{
+		
+		return age;
+	}
+	//写年龄，验证数据的有效性
+	void setage(int outage)
+	{
+		if(outage<0||outage>200)
+		{
+			age=0;
+			cout<<"输入违法年龄！电脑即将爆炸！！！"<<endl;
+			return;
+		}
+		age=outage;
+	}
+	//写lover
+	void setlover(string outlover)
+	{
+		lover=outlover;
+	}
+	
+private:
+	string name;//姓名可读可写
+	int age;//年龄只读
+	string lover;//只写
+};
+
+int main()
+{
+	person p1;
+	p1.setname ("张三");
+	cout<<"姓名为："<<p1.readname ()<<endl;
+	//写年龄
+	p1.setage (999);
+
+	cout<<"年龄为："<<p1.readage ()<<endl;
+	p1.setlover ("we");
+	//cout<<"lover是："<<p1.readlover ()<<endl;//不可以访问
+
+	system("pause");
+
+	return 0;
+}

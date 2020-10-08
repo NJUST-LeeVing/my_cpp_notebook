@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+#include<map>
+
+void PrintMap(map<int,int>&m)
+{
+	for (map<int, int>::iterator it = m.begin(); it != m.end(); it++)
+	{
+		cout << "key=" << (*it).first << "  value=" << (*it).second << endl;
+	}
+	cout << endl;
+
+};
+
+
+//map的大小和交换
+
+//大小
+void Size()
+{
+	map<int, int>m;
+	m.insert(pair<int, int>(1, 10));
+	m.insert(pair<int, int>(2, 20));
+	m.insert(pair<int, int>(3, 30));
+
+	if (m.empty())
+	{
+		cout << "map容器为空！" << endl;
+	}
+	else
+	{
+		cout << "map容器中的元素个数为：" << m.size() << endl;
+	}
+
+}
+
+//交换
+void Swap()
+{
+	map<int, int>m1;
+	m1.insert(pair<int, int>(1, 10));
+	m1.insert(pair<int, int>(2, 20));
+	m1.insert(pair<int, int>(3, 30));
+
+	map<int, int>m2;
+	m2.insert(pair<int, int>(4, 100));
+	m2.insert(pair<int, int>(5, 200));
+	m2.insert(pair<int, int>(6, 300));
+
+	cout << "交换前：" << endl;
+	cout << "m1中的元素为：" << endl;
+	PrintMap(m1);
+	cout << "m2中的元素为：" << endl;
+	PrintMap(m2);
+	m1.swap(m2);
+	cout << "交换后：" << endl;
+	cout << "m1中的元素为：" << endl;
+	PrintMap(m1);
+	cout << "m2中的元素为：" << endl;
+	PrintMap(m2);
+}
+
+
+
+
+int main()
+{
+	Swap();
+	system("pause");
+
+	return 0;
+
+}

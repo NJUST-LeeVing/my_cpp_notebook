@@ -1,0 +1,188 @@
+#include<iostream>
+using namespace std;
+
+/*案例描述：
+电脑主要组成部件为CPU、显卡、内存条。
+将每个零件封装出抽象基类，并且提供不同的厂商生产，如：Intel和Lenovo。
+创建电脑类提供让电脑工作的函数，并且调用每个零件工作的接口。
+测试时组装三台不同的电脑进行工作。
+*/
+
+//抽象CPU类
+class Cpu
+{
+public:
+	//抽象的计算函数
+	virtual void calculate()=0;
+};
+
+//抽象显卡类
+class VideoCard
+{
+public:
+	//抽象的显示函数
+	virtual void display()=0;
+};
+
+//抽象内存条类
+class Memory
+{
+public:
+	//抽象的存储函数
+	virtual void storage()=0;
+};
+
+//抽象电脑类
+class Computer
+{
+public:
+	//组装零件
+	Computer(Cpu *cpu, VideoCard *vc,Memory *mem)
+	{
+		m_Cpu=cpu;
+		m_Vc=vc;
+		m_Mem=mem;
+	}
+	//提供工作的函数
+	void work()
+	{
+		//调用接口，让零件工作起来
+		m_Cpu->calculate ();
+
+		m_Vc->display ();
+
+		m_Mem->storage ();
+	}
+
+	
+	~Computer()
+	{
+		//释放CPU零件
+		if(m_Cpu!=NULL)
+		{
+			delete m_Cpu;
+			m_Cpu=NULL;
+		}
+
+		//释放显卡零件
+		if(m_Vc!=NULL)
+		{
+			delete m_Vc;
+			m_Vc=NULL;
+		}
+		//释放内存条零件
+		if(m_Mem=NULL)
+		{
+			delete m_Mem;
+			m_Mem=NULL;
+		}
+	}
+
+private:
+	//电脑的属性有以下三部分
+	Cpu *m_Cpu;//cpu的零件指针（父类指针）
+	VideoCard *m_Vc;//显卡的零件指针（父类指针）
+	Memory *m_Mem;//内存条零件指针（父类指针）
+};
+
+//具体厂商
+
+//Intel厂商
+class IntelCpu:public Cpu
+{
+public:
+	virtual void calculate()
+	{
+		cout<<"Intel厂商的CPU开始计算了！"<<endl;
+	}
+};
+
+class IntelVideoCard:public VideoCard
+{
+public:
+	virtual void display()
+	{
+		cout<<"Intel厂商的显卡开始显示了！"<<endl;
+	}
+};
+
+class IntelMemory:public Memory
+{
+public:
+	virtual void storage()
+	{
+		cout<<"Intel厂商的C内存条开始存储了！"<<endl;
+	}
+};
+
+
+//Lenovo厂商
+class LenovoCpu:public Cpu
+{
+public:
+	virtual void calculate()
+	{
+		cout<<"Lenovo厂商的CPU开始计算了！"<<endl;
+	}
+};
+
+class LenovoVideoCard:public VideoCard
+{
+public:
+	virtual void display()
+	{
+		cout<<"Lenovo厂商的显卡开始显示了！"<<endl;
+	}
+};
+
+class LenovoMemory:public Memory
+{
+public:
+	virtual void storage()
+	{
+		cout<<"Lenovo厂商的C内存条开始存储了！"<<endl;
+	}
+};
+
+//
+void test01()
+{
+	//拿取第一台电脑零件
+	cout<<"第一台电脑开始工作！"<<endl;
+	Cpu *ComputerIntelCpu=new IntelCpu;//拿取Intel厂商制作的CPU零件
+	VideoCard *ComputerIntelCard=new IntelVideoCard;//拿取Intel厂商制作的显卡零件
+	Memory *ComputerInterMemory=new IntelMemory;//拿取Intel厂商制作的内存条零件
+
+	//组装第一台电脑
+	//创建电脑抽象类，其类中有三个指针且均指向父类指针，在通过父类指针指向子类对象。
+	Computer *computer1=new Computer(ComputerIntelCpu,ComputerIntelCard,ComputerInterMemory);
+	computer1->work ();
+	delete computer1;
+	
+	cout<<"------------------------------"<<endl;
+
+	cout<<"第二台电脑开始工作！"<<endl;
+
+	//组装第二台电脑
+	Computer *computer2=new Computer(new LenovoCpu,new LenovoVideoCard,new LenovoMemory);
+	computer2->work ();
+	delete computer2;
+
+	cout<<"------------------------------"<<endl;
+
+	cout<<"第三台电脑开始工作！"<<endl;
+
+	//组装第三台电脑
+	Computer *computer3=new Computer(new LenovoCpu,new IntelVideoCard,new LenovoMemory);
+	computer3->work ();
+	delete computer3;
+
+}
+
+int main()
+{
+	test01();
+	system("pause");
+
+	return 0;
+}

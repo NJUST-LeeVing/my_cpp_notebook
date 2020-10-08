@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+
+//函数的默认参数
+int func(int a=20,int b=20,int c=30);
+
+/*注意事项
+1、如果某个位置已经有了默认参数，那么从这个位置往后，从左到右都必须有默认值
+2、函数的声明和函数的实现只能有一个有默认参数。
+*/
+int main()
+{
+	cout<<func(10,20,30)<<endl;//如果实参与形参的默认值不一样，以实参的值为准。
+
+	system("pause");
+
+	return 0;
+}
+/*错误操作
+int func(int a=20,int b=20,int c=30)
+{
+	return a+b+c;
+}
+*/
+int func(int a,int b,int c)
+{
+	return a+b+c;
+}

@@ -1,0 +1,14 @@
+//作用：从键盘上获取数据
+#include<iostream>
+using namespace std;
+int main()
+{
+	bool  flag=false;
+	cout<<"请给布尔数据flag赋值："<<endl;
+	cin>>flag;
+	cout<<"flag的值为："<<flag<<endl;
+
+	system("pause");
+	
+	return 0;
+}

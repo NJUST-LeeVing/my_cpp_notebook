@@ -1,0 +1,16 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a4=8;   //int不能改为double，float等
+	int b4=20;
+	cout<<"余数为："<<a4%b4<<endl;
+	/*
+	double e1=3.14;
+	double e2=2;
+	cout<<"余数为："<<e1%e2<<endl;  //该存在方法为非法操作，取模运算不能有小数
+	*/
+	system("pause");
+	
+	return 0;
+}

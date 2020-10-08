@@ -1,0 +1,81 @@
+//案例描述：设置3名老师，每名老师带5名学生。老师包含老师名称和老师所带学生的信息，学生包括学生姓名和成绩分数
+#include<iostream>
+using namespace std;
+#include<string>
+#include<ctime>
+
+//创建 学生 结构体
+struct student
+{
+	string sname;
+	int score;
+};
+//创建 老师 结构体
+struct teacher
+{
+	string tname;
+	//创建学生数组
+	struct student arrs[5];
+};
+
+//打印信息的函数
+void print(struct teacher arrt[3],int len)
+{
+	for(int i=0;i<len;i++)
+	{
+		cout<<"老师的姓名："<<arrt[i].tname <<endl;
+		for(int j=0;j<5;j++)
+		{
+			cout<<"\t学生姓名："<<arrt[i].arrs[j].sname 
+			<<"  学生成绩："<<arrt[i].arrs[j].score <<endl;
+		}
+	}
+};
+
+//赋值的函数
+void allocate(struct teacher arrt[],int len)
+{
+	string nameseed="ABCDE";
+	//给老师赋值
+	for(int i=0;i<3;i++)
+	{
+		//给老师的姓名赋值
+		arrt[i].tname=nameseed[i];
+		arrt[i].tname +="老师";
+		
+		//通过循环给每名老师所带的学生赋值
+		for(int j=0;j<5;j++)
+		{
+			//给学生姓名赋值
+			arrt[i].arrs[j].sname=nameseed[j];
+			arrt[i].arrs[j].sname +="学生";
+			//给学生分数赋值
+			int random=rand()%60+41;//41分~100分
+			arrt[i].arrs[j].score =random;
+
+		}
+	}
+
+};
+
+int main()
+{
+	//创建随机数种子
+	srand((unsigned int)time(NULL));
+	
+	//1、创建 老师 数组
+	struct teacher arrt[3];
+
+	//计算数组长度
+	int len=sizeof(arrt)/sizeof(arrt[0]);
+	
+	//2、通过函数给3名老师赋值，并给学生赋值
+	allocate(arrt,len);
+	
+	//3、打印所有老师及其学生的信息
+	print(arrt,len);
+
+	system("pause");
+	
+	return 0;
+}

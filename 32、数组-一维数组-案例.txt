@@ -1,0 +1,110 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//比较五只小猪的体重的最大值：
+	//1.创建五只小猪体重的数据
+	int max=0;
+	cout<<"请输入每只小猪的体重"<<endl;
+	int arr[5];
+	cout<<"请输入第一只小猪的体重："<<endl;
+	cin>>arr[0];
+	
+	cout<<"请输入第二只小猪的体重："<<endl;
+	cin>>arr[1];
+
+	cout<<"请输入第三只小猪的体重："<<endl;
+	cin>>arr[2];
+
+	cout<<"请输入第四只小猪的体重："<<endl;
+	cin>>arr[3];
+
+	cout<<"请输入第五只小猪的体重："<<endl;
+	cin>>arr[4];
+	
+	//2.从数组中找到最大值
+	for(int i=1;i<6;i++)
+	{
+		if(max<arr[i])
+	{
+		max=arr[i];
+	}
+	
+	}
+	//3.打印最大值：
+	cout<<"体重最重的是:"<<max<<endl;
+
+
+	system("pause");
+	return 0;
+}
+
+//另解：称小猪
+#include<iostream>
+using namespace std;
+int main()
+{
+	int max=0;
+	int arr[6];
+
+	cout<<"请分别输入6只小猪的体重:"<<endl;
+
+	cin>>arr[0]>>arr[1]>>arr[2]>>arr[3]>>arr[4]>>arr[5];
+	for(int i=0;i<6;i++)
+	{
+		if(max<arr[i])
+		{
+			max=arr[i];
+		}
+	}
+		cout<<"最重的小猪有"<<max<<"kg"<<endl;
+
+	system("pause");
+	return 0;
+}
+
+
+//元素逆置
+#include<iostream>
+using namespace std;
+int main()
+{
+	//实现数组元素逆置
+
+	//1.创建数组
+	int arr[5]={1,3,2,5,4};
+	cout<<"元素逆置前的结果：";
+	for(int i=0;i<5;i++)
+	{
+		cout<<arr[i];
+	
+	}
+	/*2.实现逆置
+	a.记录起始下标的位置
+	b.记录结束下标的位置
+	c.起始下标与结束下标位置互换
+	d.起始位置++，结束位置--
+	e.循环执行a操作，直到起始位置>=结束位置*/
+	int start=0;
+	int end=sizeof(arr)/sizeof(arr[0])-1;
+	while(start<end)
+	{
+		//实现元素互换
+	int temp=arr[start];
+	arr[start]=arr[end];//"三角变换"
+	arr[end]=temp;
+	start++;end--;
+	}
+	cout<<endl;
+	//3.打印逆置后的数组
+	cout<<"逆置后的数字元素为：";
+	for(int i=0;i<5;i++)
+	{
+		cout<<arr[i];
+	
+	}
+	cout<<endl;
+	
+	system("pause");
+	return 0;
+}

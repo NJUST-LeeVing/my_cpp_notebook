@@ -1,0 +1,41 @@
+#include<iostream>
+using namespace std;
+
+//字符串的比较
+//比较方式：字符串比较是按照字符的ASCII吗进行对比
+//返回值有-1（小于） 0（等于） 1（大于）
+
+//函数原型
+//int compare(const string &s) const;//与字符串s比较
+//int compare(const string &s) const;//与字符串s比较
+
+
+
+void test01()
+{
+	string s1 = "hello,world";
+	string s2 = "hello,world";
+	string s3 = "lihailong";
+	if (s1.compare(s2) == 0)
+	{
+		cout << "s1等于s2" << endl;
+	}
+	else if (s1.compare(s2) > 0)
+	{
+		cout << "s1大于s2" << endl;
+	}
+	else 
+	{
+		cout << "s1小于s2" << endl;
+	}
+
+
+}
+
+int main()
+{
+	test01();
+	system("pause");
+
+	return 0;
+}

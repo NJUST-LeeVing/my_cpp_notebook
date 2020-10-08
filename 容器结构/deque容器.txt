@@ -1,0 +1,200 @@
+#include<iostream>
+using namespace std;
+#include<deque>
+#include<string>
+#include<algorithm>
+
+/*关于容器的使用小技巧
+d2.insert(d1.begin(),6,666)//插入6个666
+d2.insert(d1.begin(),666)//插入1个666
+d2.insert(d2.begin(), d1.begin(), d1.end());//在d2容器的某个区间上插入一段数据
+*/
+
+
+//deque容器的食用方法
+
+//创建 人 类
+class Person
+{
+public:
+	Person(string name,int age)
+	{
+		this->m_Name = name;
+		this->m_Age = age;
+	}
+
+	string m_Name;
+	int m_Age;
+};
+
+//打印函数
+//begin()函数返回值是容器中第一个元素的指针
+void PrintDeque(deque<Person>&d)
+{
+	for (deque<Person>::iterator it = d.begin(); it != d.end(); it++)
+	{
+		cout << "姓名：" << it->m_Name << "  年龄：" << it->m_Age << endl;
+	}
+	cout << endl;
+}
+
+void PrintDeque(deque<int>& d)
+{
+	for (deque<int>::iterator it = d.begin(); it != d.end(); it++)
+	{
+		cout << *it << endl;
+	}
+	cout << endl;
+}
+
+
+//构造
+void Constructor()
+{
+	deque<Person>d1;//默认构造函数
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("詹姆斯", 36);
+
+	d1.push_back(p1);
+	d1.push_back(p2);
+	d1.push_back(p3);
+
+	//区间访问
+	deque<Person>d2(d1.begin(),d1.end()-1);
+	cout << "d2包含的人有：" << endl;
+	PrintDeque(d2);
+}
+
+
+
+//??????????????????????????????????????????????????????????????????????????????
+//为什么无法打印？
+//赋值
+void Assign()
+{
+	deque<Person>d1;
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("詹姆斯", 36);
+
+	deque<Person>d2;
+	d2.assign(d1.begin(), d1.end());
+	cout << "d2包含的人有：" << endl;
+	PrintDeque(d2);
+}
+//??????????????????????????????????????????????????????????????????????????????
+
+//赋值
+void assign()
+{
+	deque<int>d1;
+	d1.push_back(10);
+	d1.push_back(20);
+	d1.push_back(30);
+	d1.push_back(40);
+
+	//赋值操作
+	deque<int>d2;
+	d2 = d1;
+	PrintDeque(d2);
+}
+
+
+//插入和删除
+void Insert_Delete()
+{
+	deque<Person>d1;
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("詹姆斯", 36);
+
+	//头插尾插，头删尾删太简单，不操作
+	d1.push_back(p1);
+	d1.push_back(p2);
+	d1.push_back(p3);
+
+	PrintDeque(d1);
+
+	//insert插入
+	d1.insert(d1.begin(), d1.begin(), d1.end());
+	PrintDeque(d1);
+
+	//清空
+	d1.clear();
+	cout << "清空后：";
+	PrintDeque(d1);
+}
+
+//大小和容量---->deque容器只有大小，没有容量
+void Size()
+{
+	deque<Person>d1;
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("詹姆斯", 36);
+	d1.push_back(p1);
+	d1.push_back(p2);
+	d1.push_back(p3);
+
+	cout << "d1容器的大小为：" << d1.size() << endl;
+	//错误操作
+	//cout << "d1容器的容量为：" << d1.capacity() << endl;
+
+}
+
+//数据获取
+void Procurement()
+{
+	deque<Person>d1;
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("詹姆斯", 36);
+	d1.push_back(p1);
+	d1.push_back(p2);
+	d1.push_back(p3);
+
+	cout << "deque容器中的元素有：";
+	//遍历且修改元素
+	for (int i = 0; i < d1.size(); i++)
+	{
+		cout << "姓名：" << d1[i].m_Name << "  年龄：" << d1[i].m_Age << endl;
+		d1[i].m_Name = "憨憨";
+		d1[i].m_Age = 19;
+	}
+
+	cout << "修改后：" << endl;
+	PrintDeque(d1);
+
+}
+
+//交换:由于太简单，步骤省略
+void Swap()
+{}
+
+//排序
+void Sort()
+{
+	deque<int>d;
+	d.push_back(4);
+	d.push_back(1);
+	d.push_back(5);
+	d.push_back(7);
+	d.push_back(9);
+	d.push_back(0);
+	d.push_back(2);
+	d.push_back(3);
+
+	//开始排序：默认为升序
+	sort(d.begin(), d.end());
+	cout << "升序排序后：" << endl;
+	PrintDeque(d);
+}
+
+int main()
+{
+	system("pause");
+
+	return 0;
+
+}

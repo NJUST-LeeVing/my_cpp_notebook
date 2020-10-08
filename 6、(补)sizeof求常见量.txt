@@ -1,0 +1,14 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int arr[4];
+	cout<<sizeof(int)<<endl;
+
+	cout<<sizeof(arr[3])<<endl;
+
+	system("pause");
+	return 0;
+
+}

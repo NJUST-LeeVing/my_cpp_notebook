@@ -1,0 +1,51 @@
+#include<iostream> 
+using namespace std;
+int main()
+{
+	//三目运算符:  ? :
+
+	//创建三个变量a b c
+	
+	int a=10;
+	int b=20;
+	int c=0;
+	
+	c=(a>b?a:b);//将a和b作比较，将变量大的值赋值给变量c
+	
+	cout<<"c="<<c<<endl;//C++中三目运算符返回的是变量，可以继续赋值,例子如下
+	
+
+	(a<b?a:b)=100;
+	cout<<"a="<<a<<endl;
+	cout<<"b="<<b<<endl;
+
+
+	system("pause");
+
+	return 0;
+}
+
+
+//比较三只小猪的体重
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a=0;
+	int b=0;
+	int c=0;
+	int d=0;
+	int e=0;
+	cout<<"请输入大猪的体重："<<endl;
+	cin>>a;
+	cout<<"请输入二猪的体重："<<endl;
+	cin>>b;
+	cout<<"请输入三猪的体重："<<endl;
+	cin>>c;
+	d=(a>b?a:b);
+	e=(d>c?d:c);
+	cout<<"体重最重的是："<<e<<"kg"<<endl;
+
+	system("pause");
+	return 0;
+}		

@@ -1,0 +1,41 @@
+//本节目标：学会创建静态成员变量。掌握访问静态成员变量的方法。知道静态成员变量的访问权限。
+
+#include<iostream>
+using namespace std;
+class person
+{
+public:
+	//静态成员变量的特点：
+	//1、在编译阶段分配内存。
+	//2、类内声明，类外初始化
+	//3、所有对象共享同一份数据
+
+	static int m_A;//静态成员变量
+private:
+	static int m_B;//静态成员变量也是有访问权限的
+};
+//类外初始化
+int person::m_A=10;
+int person::m_B=20;
+
+void test01()
+{
+	//1、通过对象访问静态成员
+	person p1;
+	p1.m_A =100;
+	cout<<"p1.m_A="<<p1.m_A<<endl;
+
+	person p2;
+	//p2.m_B =200;//
+
+	//2、通过类名
+	person::m_A =1;
+	cout<<"m_A="<<person::m_A<<endl;
+	//p2.m_B =300;静态成员变量也是有访问权限的
+}
+int main()
+{
+	test01();
+	system("pause");
+	return 0;
+}

@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//逻辑运算符 
+	//在C++中 除了0 都为真
+	//非  ！
+	int a=10;
+	cout<<!a<<endl; //0
+	cout<<!!a<<endl;//1
+
+	//与  &&
+	int b=10;
+	int c=10;
+	cout<<(b&&c)<<endl;//1
+
+	int d=10;
+	int e=0;
+	cout<<(d&&e)<<endl;//0
+
+	int f=0;
+	int g=0;
+	cout<<(f&&g)<<endl;//0
+
+	//或  ||
+	int h=10;
+	int i=10;
+	cout<<(h||i)<<endl;//1
+
+	int j=0;
+	int k=10;
+	cout<<(j||k)<<endl;//1
+
+
+	system("pause");
+	return 0;
+}

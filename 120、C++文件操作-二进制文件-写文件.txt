@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+#include<fstream>
+#include<string>
+
+//二进制文件  写文件
+
+class Person
+{
+public:
+	char m_Name[64];//建议用c语言的char而不是C++的string
+	int m_Age;
+
+};
+
+void test01()
+{
+	//1、包含头文件
+
+	//2、创建流对象
+	ofstream ofs;//可以直接在此指定路径和打开方式
+
+	//3、打开文件
+	ofs.open("person.txt",ios::out | ios::binary);
+
+	//4、写文件
+	Person p={"张三",18};//容易错写为 Person p("张三"，18)。当Person类中没有人为创建构造函数和析构函数时，可以有这种写法。为什么？
+	ofs.write( (const char*) &p,sizeof(Person));
+
+	//5、关闭文件
+	ofs.close();
+}
+
+
+int main()
+{
+	test01();
+	system("pause");
+	return 0;
+
+}
+
+/*
+总结：
+二进制方式写文件主要利用流对象调用成员函数write
+函数原型：  ostream& write(const char* buffer,int len);
+字符指针buffer指向内存中一段存储空间，len是读写的字节数。
+*/

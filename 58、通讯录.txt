@@ -1,0 +1,327 @@
+#include<iostream>
+using namespace std;
+#include<string>
+#define MAX 1000
+
+void menu()//菜单界面
+{
+	cout<<"*************************"<<endl;
+	cout<<"******1、添加联系人******"<<endl;
+	cout<<"******2、显示联系人******"<<endl;
+	cout<<"******3、删除联系人******"<<endl;
+	cout<<"******4、查找联系人******"<<endl;
+	cout<<"******5、修改联系人******"<<endl;
+	cout<<"******6、清空联系人******"<<endl;
+	cout<<"******0、退出通信录******"<<endl;
+	cout<<"*************************"<<endl;
+}
+//设计联系人结构体
+struct person
+{
+	string name;
+	int age;
+	int sex;//1表示男 2表示女
+	string phone;
+	string addr;
+};
+
+
+//设计通讯录结构体
+struct book
+{                                           
+	//通讯录中保存联系人的数组
+	struct person personarr[MAX];//结构体中嵌套结构体数组
+
+	//通讯录中当前记录联系人的个数
+	int size;
+};
+
+//1、添加联系人 函数
+void addperson(book *abs)
+{
+	//判断通讯录是否已满，如果满了就不再添加
+	if(abs->size ==MAX)
+	{
+		cout<<"通讯录已满，无法添加"<<endl;
+		return;
+	}
+	else
+	{
+		//添加具体联系人
+		string name;
+		cout<<"请输入姓名：";
+		cin>>name;
+		abs->personarr [abs->size].name =name; //将输入的name存放到abs的personarr[i]的name中，其中i=abs->size;
+
+		//性别
+		cout<<"请输入性别（1代表男，2代表女）：";
+
+		while(1)
+		{
+			int sex=0;
+			cin>>sex;
+			if(sex==1||sex==2)//如果输入1或2，则退出循环
+			{
+				abs->personarr [abs->size ].sex =sex;
+				break;
+			}
+			cout<<"输入有误，请重新输入"<<endl;
+		}
+		//年龄
+		cout<<"请输入年龄：";
+		int age=0;
+		cin>>age;
+		abs->personarr [abs->size  ].age =age;
+
+		//电话
+		cout<<"请输入联系电话：";
+		string phone;
+		cin>>phone;
+		abs->personarr [abs->size ].phone =phone;
+
+		//家庭住址
+		cout<<"请输入家庭住址：";
+		string addr;
+		cin>>addr;
+		abs->personarr [abs->size ].addr =addr;
+
+		//更新通讯录中的人数
+		abs->size ++;
+	
+		cout<<"添加成功！";
+
+		system("pause");
+		system("cls");//清屏操作,清除该函数的所有内容
+	
+	}
+}
+
+//2、显示联系人
+void showperson(book *abs)
+{
+	//判断通讯录中人数是否为0。如果为0，提示为空。如果不为0，显示联系人
+	if(abs->size ==0)
+	{
+		cout<<"联系人为空。"<<endl;
+	}
+	else
+	{
+		for(int i=0;i<abs->size ;i++)
+		{
+			cout<<"姓名："<<abs->personarr [i].name <<"\t";
+			cout<<"性别："<<(abs->personarr [i].sex==1?"男":"女" )<<"\t";//三目运算，妙！
+			cout<<"年龄："<<abs->personarr [i].age <<"\t";
+			cout<<"联系电话："<<abs->personarr [i].phone <<"\t";
+			cout<<"家庭住址："<<abs->personarr [i].addr <<"\t";
+			cout<<endl;
+		}
+	}
+	system("pause");
+	system("cls");
+}
+//检测联系人是否存在，如果存在，返回联系人所在数组中的具体位置，不存在返回-1
+//参数1代表通讯录  参数2代表对比姓名
+int exist(book *abs,string name)
+{
+	for(int i=0;i<abs->size ;i++)
+	{
+		if(abs->personarr [i].name ==name)
+		{
+			return i;//找到了，返回这个人在数组中的编号
+		}
+	}
+	return -1;//没有找到，返回-1。
+}
+
+//3、删除联系人
+void deleteperson(book *abs,string name)
+{
+	//ret=-1  未查到
+	//ret!=-1  找到了
+	int ret=exist(abs,name);
+
+	if(ret!=-1)
+	{
+		//查找到人，要进行删除操作。
+
+		for(int i=ret;i<abs->size ;i++)
+		{
+			//数据前移操作
+			abs->personarr[i]=abs->personarr[i+1];
+		}
+		cout<<"删除成功！";
+		abs->size --;//更新通讯录中的人员数
+		system("pause");
+		system("cls");
+
+	}
+	else
+	{
+		cout<<"查无此人。";
+		system("pause");
+		system("cls");
+	}
+}
+
+//4、封装 查找联系人 函数
+void findperson(book *abs)
+{
+	cout<<"请输入您要查找的联系人姓名：";
+	string name;
+	cin>>name;
+	//判断指定的联系人是否存在
+	int ret=exist(abs,name);
+	if(ret!=-1)//找到联系人
+	{
+		for(int i=0;i<abs->size ;i++)
+		{
+			cout<<"姓名："<<abs->personarr [i].name <<"\t";
+			cout<<"性别："<<(abs->personarr [i].sex==1?"男":"女" )<<"\t";//三目运算，妙！
+			cout<<"年龄："<<abs->personarr [i].age <<"\t";
+			cout<<"联系电话："<<abs->personarr [i].phone <<"\t";
+			cout<<"家庭住址："<<abs->personarr [i].addr <<"\t";
+			cout<<endl;
+		}
+	}
+	else//未找到
+	{
+		cout<<"查无此人。";
+	}
+	system("pause");
+	system("cls");
+}
+//5、修改 联系人 函数
+void modifyperson(book *abs)
+{
+	cout<<"请输入您要修改的联系人：";
+	string name;
+	cin>>name;
+	int ret=exist(abs,name);
+	if(ret!=-1)
+	{
+		string name;
+		cout<<"请输入修改后的姓名：";
+		cin>>name;
+		abs->personarr [ret].name =name;
+		
+		while(1)
+		{
+			int sex=0;
+			cout<<"请选择修改后的性别(1代表男，2代表女)：";
+			cin>>sex;
+			if(sex==1||sex==2)
+			{
+				abs->personarr [ret].sex =sex;
+				break;
+			}
+			else
+			{
+				cout<<"输入有误，请重新输入";
+			}
+		
+		}
+		
+		int age=0;
+		cout<<"请输入修改后的年龄：";
+		cin>>age;
+		abs->personarr [ret].age =age;
+		
+		int phone=0;
+		cout<<"请输入修改后的联系电话：";
+		cin>>phone;
+		abs->personarr [ret].phone =phone;
+
+		string addr;
+		cout<<"请输入修改后的家庭地址：";
+		cin>>addr;
+		abs->personarr [ret].addr =addr;
+
+	}
+	else
+	{
+		cout<<"查无此人。";
+	}
+	system("pause");
+	system("cls"); 
+}
+//6、封装 清空联系人 函数
+void cleanperson(book *abs)
+{
+	cout<<"一旦清空将无法恢复，您确定清空吗？"<<endl;
+	cout<<"1、确定  2、取消  (选择序号) "<<endl;
+	int select=0;
+	cin>>select;
+	while(1)
+	{
+		switch(select)
+		{
+		case 1:
+		{
+			abs->size =0;
+			cout<<"通讯录已清空"<<endl;
+			system("pause");
+			system("cls");
+			return;
+		}
+		case 2:
+			system("pause");
+			system("cls");
+			return;
+		default:
+		cout<<"输入无效，请重新输入。";
+		}	
+	}
+}
+int main()
+{
+	//创建通讯录结构体变量
+	book abs;
+
+	//初始化通讯录中当前人员的个数  
+	abs.size = 0;//易错点：易写为book.size
+	
+	while(true)
+	{
+		menu();
+		int select=0;
+		cout<<"请选择编号："<<endl;
+		cin>>select;
+
+		switch(select)
+		{
+		case 1://1、添加联系人
+			addperson(&abs);//利用地址传递可以修饰实参
+			break;
+		case 2://2、显示联系人
+			showperson(&abs);
+			break;
+		case 3://3、删除联系人
+			{
+				cout<<"请输入删除联系人的姓名：";//case下面语句过多，须用{}将其括起来。
+				string name;
+				cin>>name;
+				deleteperson(&abs,name);
+			}
+			break;
+		case 4://4、查找联系人
+			findperson(&abs);
+			break;
+		case 5://5、修改联系人
+			modifyperson(&abs);
+			break;
+		case 6://6、清空联系人
+			cleanperson(&abs);
+			break;
+		case 0://0、退出通信录
+			cout<<"欢迎您下次使用"<<endl;
+		
+			system("pause");
+
+			return 0;//结束函数
+		}
+	
+	}
+	system("pause");
+
+	return 0;
+}

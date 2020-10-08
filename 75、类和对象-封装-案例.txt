@@ -1,0 +1,59 @@
+/*
+案例：
+设计一个学生类，属性有姓名，学号。
+可以给姓名和学号赋值，可以显示学生的姓名和学号
+*/
+#include<iostream>
+using namespace std;
+#include<string>
+//设计学生类
+class student
+{
+public://公共权限
+
+	//属性（姓名、学号）
+	string m_name;
+	int id;
+
+	//行为
+	//显示姓名和学号
+	void show()
+	{
+		cout<<"姓名："<<m_name<<endl<<"学号："<<id;
+	}
+
+	//给姓名赋值
+	void setname(string name)
+	{
+		m_name=name;
+	}
+	//活学活用：给学号进行赋值
+	
+};
+int main()
+{
+	//创建一个具体的学生(通过类实例化对象)
+	student s1;
+	//给s1对象的属性进行赋值操作
+	s1.m_name ="李文";//通过变量对属性进行赋值
+	//或 s1.setname ("李文") ;通过函数对属性进行赋值
+	
+	s1.id =666;
+	//显示学生信息
+	s1.show();
+	cout<<endl;
+	student s2;
+	s2.m_name ="库里";
+	s2.id =30;
+	s2.show();
+	cout<<endl;
+
+	system("pause");
+
+	return 0;
+}
+/*专业术语介绍：
+类中的属性和行为，我们统一称为成员
+属性也叫做成员属性或成员变量
+行为也叫做成员函数或成员方法
+*/

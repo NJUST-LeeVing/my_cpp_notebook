@@ -1,0 +1,84 @@
+#include<iostream>
+using namespace std;
+#include<stack>
+#include<queue>
+#include<string>
+
+//stack容器和queue容器的使用：前者先进后出，后者先进先出
+
+
+//创建 人 类
+class Person
+{
+public:
+	Person(string name,int age)
+	{
+		this->m_Name = name;
+		this->m_Age = age;
+	}
+	string m_Name;
+	int m_Age;
+
+};
+
+//stack容器：stack容器不能遍历内容，不能容at()函数和[]访问
+//stack容器比较简单，记住top()函数,pop()函数,size()函数即可
+void Stack()
+{
+	stack<Person>s;
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("库里", 32);
+
+	//入栈
+	s.push(p1);
+	s.push(p2);
+	s.push(p3);
+
+	cout << "s的大小为：" << s.size() << endl;
+
+	cout << "s中的元素有：" << endl;
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "栈顶元素为：" << endl;
+		cout << "姓名：" << s.top().m_Name << "  年龄：" << s.top().m_Age << endl;
+		//出栈，后进先出
+		s.pop();
+	}
+}
+
+//queue函数
+//记住front()函数,pop()函数,size()函数 即可
+void Queue()
+{
+	queue<Person>Q;
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("库里", 32);
+	//入队
+	Q.push(p1);
+	Q.push(p2);
+	Q.push(p3);
+
+	cout << "queue容器中的元素：" << endl;
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "队头元素：" << endl;
+		cout << "姓名：" << Q.front().m_Name << "  年龄：" << Q.front().m_Age << endl;
+		cout << "队尾元素：" << endl;
+		cout << "姓名：" << Q.back().m_Name << "  年龄：" << Q.back().m_Age << endl;
+		cout << endl;
+		//出队：先进先出
+		Q.pop();
+
+	}
+
+}
+
+int main()
+{
+	system("pause");
+
+	return 0;
+
+}

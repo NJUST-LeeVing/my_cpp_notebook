@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a1=10;  //C++中规定：两个整数相除结果依然是整数，将小数部分舍去，及向下取值
+	int b1=6;
+	cout<<"a1+b1="<<a1+b1<<endl;
+	cout<<"a1-b1="<<a1-b1<<endl;
+	cout<<"a1*b1="<<a1*b1<<endl;
+	cout<<"a1/b1="<<a1/b1<<endl;
+
+	/*
+	int a2=3;
+	int b2=0;
+	cout<<"a2/b2="<<a2/b2<<endl; //该操作为非法操作
+	*/
+
+	double a3=5;   //可直观理解为double比float更精准，double内存更大
+	double b3=2;
+	cout<<"a3/b3="<<a3/b3;
+	system("pause");
+	
+	return 0;
+}

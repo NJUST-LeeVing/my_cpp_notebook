@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+#include<set>
+
+/*set容器的 插入与删除
+功能描述：插入、删除
+*/
+
+//打印
+void PrintSet(const set<int>& s)
+{
+	for (set<int>::const_iterator it = s.begin(); it != s.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+
+void Insert_Delete()
+{
+	set<int>s1;
+	s1.insert(20);
+	s1.insert(40);
+	s1.insert(30);
+	s1.insert(10);
+	cout << "刚开始的所有元素：";
+	PrintSet(s1);
+
+	//删除:删除的是系统已经排序后的结果
+	cout << "删除第一个元素后：";
+	s1.erase(s1.begin());
+	PrintSet(s1);
+
+	//直接删
+	cout << "删除30后的元素：";
+	s1.erase(30);
+	PrintSet(s1);
+
+	//清空
+	cout << "清空后的元素：";
+	s1.erase(s1.begin(), s1.end());
+	//s1.clear();//这种写法也可以
+	PrintSet(s1);
+}
+
+
+int main()
+{
+	Insert_Delete();
+	system("pause");
+
+	return 0;
+
+}

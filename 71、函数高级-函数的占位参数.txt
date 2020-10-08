@@ -1,0 +1,17 @@
+#include<iostream>
+using namespace std;
+
+//占位参数语法：
+//返回值类型  函数名（数据类型）{}
+//占位参数还可以有默认参数
+void func(int ,int=10)//目前阶段的占位参数，我们还用不到。
+{
+	cout<<"666"<<endl;
+}
+int main()
+{
+	func(10);
+	system("pause");
+
+	return 0;
+}

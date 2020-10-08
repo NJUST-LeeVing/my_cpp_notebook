@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+
+//string求子串
+void test01()
+{
+	string str = "lihailong@qq.com";
+
+	string SubStr = str.substr(0, 9);
+
+	cout << "SubStr=" << SubStr << endl;
+
+}
+
+
+//实用案例
+void test02()
+{
+	string str = "lihailong@qq.com";
+
+	int pos = str.find("@");
+	cout << "pos=" << pos << endl;
+
+	cout << "姓名：" << str.substr(0, 9) << endl;
+	
+}
+
+int main()
+{
+	test02();
+	system("pause");
+
+	return 0;
+}
+//灵活运用求子串功能，该功能很重要

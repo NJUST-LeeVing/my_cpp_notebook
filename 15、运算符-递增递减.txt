@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//1、前置递增
+	int a=10;
+	++a;
+	cout<<"a="<<a<<endl;
+
+	//2、后置递增
+	int b=10;
+	b++;
+	cout<<"b="<<b<<endl;
+
+	//3、前置递增和后置递增的区别
+	//前置递增：先让变量+1，然后进行表达式的运算
+	int c=10;
+	int d=++c*10;
+	cout<<"d="<<d<<endl;
+	
+	//后置递增：先进行表达式的运算，然后让变量+1
+	int e=10;
+	int f=e++*10;
+	cout<<"f="<<f<<endl;
+
+	system("pause");
+	
+	return 0;
+}

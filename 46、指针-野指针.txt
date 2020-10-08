@@ -1,0 +1,18 @@
+//该视频须多次观看
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//野指针:指针变量指向非法空间
+	//在程序中，尽量避免野指针
+	int *p=(int *)520;//(int *)表编号示后面的内容是地址
+
+	cout<<(int)p<<endl;//可以访问地址
+	cout<<*p<<endl;//不可以访问地址上的值
+
+	//空指针和野指针都不是我们申请的空间，不要随意访问。
+
+	system("pause");
+	return 0;
+}

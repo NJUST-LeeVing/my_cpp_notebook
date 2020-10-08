@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std;
+#include<map>
+
+/*map基本概念
+简介：
+map中所有元素都是pair
+pair中第一个元素为key（键值），起到索引的作用，第二个元素为value（实值）
+所有元素都会根据元素的减值自动排序
+
+本质：
+map/multimap属于 关联式容器，低层结构是用二叉树实现
+
+优点：
+可以根据key值快速找到value值
+map和multimap的区别：
+	map不允许容器中有重复key值元素
+	multimap允许容器中有重复key值元素
+*/
+
+void PrintMap(map<int,int>&m)
+{
+	for (map<int, int>::iterator it = m.begin(); it != m.end(); it++)
+	{
+		cout << "key=" << (*it).first << "  value=" << (*it).second << endl;
+	}
+	cout << endl;
+
+};
+
+
+//map的构造和赋值
+void test01()
+{
+	map<int, int>m1;
+	m1.insert(pair<int, int>(1, 10));
+	m1.insert(pair<int, int>(3, 30));
+	m1.insert(pair<int, int>(4, 40));
+	m1.insert(pair<int, int>(2, 20));
+	//按照key值进行排序
+	PrintMap(m1);
+
+	//拷贝构造
+	map<int, int>m2(m1);
+	PrintMap(m2);
+
+	//赋值
+	map<int, int>m3;
+	m3 = m2;
+	PrintMap(m3);
+
+}
+
+
+int main()
+{
+	test01();
+
+
+	system("pause");
+
+	return 0;
+
+}
+//总结：map容器中所有元素都是成对出现的，插入数据是要使用对组

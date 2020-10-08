@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+#include<map>
+
+/*我还是不知道该怎么办啊！为什么会出错？*/
+
+//map容器的排序：利用仿函数
+
+//利用仿函数改变排序规则
+class MyCompare
+{
+public:
+	bool operator()(int v1, int v2)
+	{
+		return v1 > v2;
+	}
+};
+
+void Sort()
+{
+	map<int, int,MyCompare>m;
+	m.insert(pair<int, int>(1, 10));
+	m.insert(pair<int, int>(3, 30));
+	m.insert(pair<int, int>(5, 50));
+	m.insert(pair<int, int>(2, 20));
+	m.insert(pair<int, int>(6, 60));
+	m.insert(pair<int, int>(4, 40));
+
+	for (map<int, int, MyCompare>::iterator it = m.begin(); it != m.end(); it++)
+	{
+		cout << "key=" << (*it).first << "  value=" << (*it).second << endl;
+	}
+	cout << endl;
+}
+
+
+int main()
+{
+	Sort();
+	system("pause");
+
+	return 0;
+
+}

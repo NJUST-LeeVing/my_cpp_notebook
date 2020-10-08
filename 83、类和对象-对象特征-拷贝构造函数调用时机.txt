@@ -1,0 +1,65 @@
+//本节目标：①掌握拷贝构造函数调用的三种时机。②采用合适的方法证明拷贝后的值不在同一地址。
+
+#include<iostream>
+using namespace std;
+
+class person{
+public:
+	person () {
+		cout << "person默认构造函数调用" << endl;
+	}
+	person (int age) {
+		Age = age;
+		cout << "person有参构造函数调用" << endl;
+	}
+	person (const person &p) {
+		Age = p.Age ;
+		cout << "person拷贝构造函数调用" << endl;
+	}
+
+
+	~person () {
+		cout << "person析构函数调用" << endl;
+	}
+	int Age;
+};
+
+//拷贝构造函数调用时机
+
+//时机1、使用一个已经创建完毕的对象来初始化一个新对象,相当于复制
+void test01() {
+	person p1(20);
+	person p2(p1);//用创建好的p1初始化p2
+
+	cout << "p2的年龄为：" << p2.Age << endl;
+}
+//时机2、值传递的方式给函数参数传值
+void dowork(person p) {}
+void test02 () {
+	person p;
+	dowork(p);
+}
+
+//3、值的方式返回局部对象()
+person dowork2() {
+	person p1;//p1在执行后被释放，这是拷贝出一个新的对象赋予test03函数中的p
+	cout << (int)& p1 << endl;
+	return p1;
+}
+
+void test03()
+{
+	person p = dowork2 ();
+	cout << (int)& p << endl;
+}
+
+int main() {
+	//test01();
+	//test02();
+	test03();
+
+
+	system("pause");
+
+	return 0;
+}

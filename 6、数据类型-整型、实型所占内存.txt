@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	cout<<"short类型所占用的内存空间为："<<sizeof(short)<<"字节"<<endl;
+	
+	cout<<"int类型所占用的内存空间为："<<sizeof(int)<<"字节"<<endl;
+	
+	cout<<"long类型所占用的内存空间为："<<sizeof(long)<<"字节"<<endl;
+	
+	cout<<"long long类型所占用的内存空间为："<<sizeof(long long)<<"字节"<<endl;
+	
+	cout<<"float类型所占用的内存空间为："<<sizeof(float)<<"字节"<<endl;
+	
+	cout<<"double类型所占用的内存空间为："<<sizeof(double)<<"字节"<<endl;
+	
+	system("pause");
+	
+	return 0;
+}

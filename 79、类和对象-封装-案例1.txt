@@ -1,0 +1,105 @@
+/*案例描述：设计立方体类，求出立方体的面积和体积，分别利用全局函数和成员函数判断两个立方体的表面积和体积是否相等。
+*/
+#include<iostream>
+using namespace std;
+
+//创建cube类
+class cube
+{
+public:
+	void getL(double l)
+	{
+		L=l;
+	}
+	void getW(double w)
+	{
+		W=w;
+	}
+	void getH(double h)
+	{
+		H=h;
+	}
+	double size()
+	{
+		return 2*(L*W+L*H+W*H);
+	}
+	double v()
+	{
+		return L*W*H;
+	}
+
+	bool classsame(cube &c)
+	{
+		if(v()==c.L *c.W *c.H )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+private:
+	double L;
+	double W;
+	double H;
+
+};
+
+//利用全局函数判断两个立方体面积是否相等
+bool issame(cube &c1,cube &c2)
+{
+	if(c1.size ()==c2.size ())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+int main()
+{
+	double l,w,h;
+	cube c1;
+	c1.getL (10);
+	c1.getW (10);
+	c1.getH (12);
+	cout<<"c1的面积："<<c1.size ()<<endl;
+	cout<<"c1的体积："<<c1.v ()<<endl;
+	cube c2;
+	c2.getL (11);
+	c2.getW (10);
+	c2.getH (10);
+	cout<<"c2的面积："<<c2.size ()<<endl;
+	cout<<"c2的体积："<<c2.v ()<<endl;
+	//利用全局函数判断
+	bool ret=issame(c1,c2);
+	{
+		if(ret)//注意注意!!!不要写作if(ret=true)
+		{
+			cout<<"全局函数判断：c1的面积与c2的面积相等。";
+		}
+		else
+		{
+			cout<<"全局函数判断：c1的面积和c2的面积不相等。";
+		}
+		cout<<endl;
+	}
+	//利用成员函数判断
+	ret=c1.classsame (c2);
+	if(ret)
+	{
+		cout<<"成员函数判断：c1和c2的体积相等的。"<<endl;
+	}
+	else
+	{
+		cout<<"成员函数判断：c1和c2的体积不相等"<<endl;
+	}
+	cout<<endl;
+
+	system("pause");
+	
+	return 0;
+}

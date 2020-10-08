@@ -1,0 +1,75 @@
+#include<iostream>
+using namespace std;
+
+//1、构造函数的分类
+//按照参数分类：有参和无参构造  无参有称为默认构造函数
+//按照类型分类：普通构造和拷贝构造
+
+class person
+{
+public:
+	//无参（默认）构造函数
+	person()
+	{
+		cout<<"person的无参构造函数！"<<endl;
+	}
+	//有参构造函数
+	person(int a)
+	{
+		age=a;
+		cout<<"person的有参构造函数！"<<endl;
+	}
+
+	//拷贝构造函数
+	person(const person &p)//将传入的人身上的所有属性拷贝
+	{
+		cout<<"person的拷贝函数的构造！"<<endl;
+		age=p.age ;//p.age指向的是有参构造函数中的age
+	}
+	~person()
+	{
+		cout<<"person的析构函数调用"<<endl;
+	}
+	int age;
+};
+//2、函数的调用
+void test01()
+{
+	//1、括号法：建议使用
+	person p1;//默认构造函数的调用
+	person p2(10);//有参构造函数
+	person p3(p2);//拷贝函数的调用
+
+	cout<<"p2的年龄为："<<p2.age <<endl;
+	cout<<"p3的年龄为："<<p3.age <<endl;
+	
+	//注意事项：调用默认构造函数时，不要加()
+	//person p1(); 会被编译器认为是函数的声明
+
+	//2、显示法
+	person p4;
+	person p5=person(10);//有参构造函数
+	person p6=person(p5);//拷贝函数构造
+
+	//匿名对象
+	person(10);//特点：当执行结束后，系统会立即回收掉匿名对象
+	person p7=person(10);//该函数执行完后才释放，对比与上面一条代码的区别
+	cout<<"验证"<<endl;
+	//注意事项：不要利用拷贝构造函数 初始化匿名对象。如下：
+	//person(p6);错误代码，p6是一个拷贝构造函数。编译器会认为person(p6)===person p6，当做是person p6的声明
+	person p8=person(p6);//正确代码
+
+	//3、隐式转换法
+	person p10=20;//相当于person p10=person(20);  有参构造
+	person p11=p6;//拷贝构造
+
+}
+
+int main()
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}

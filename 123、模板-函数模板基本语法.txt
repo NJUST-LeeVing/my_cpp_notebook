@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+
+//函数模板
+template<typename T> //声明一个模板，告诉编译器后面代码中紧跟的T不要报错，T是一个通用的数据类型
+void MySwap(T &a,T &b)
+{
+	T temp=a;
+	a=b;
+	b=temp;
+}
+
+//两种方式使用函数模板
+//方法1：自动类型推导
+void test01()
+{
+	int a=1;
+	int b=2;
+
+	MySwap(a,b);
+	cout<<"a="<<a<<"  b="<<b<<endl;
+
+}
+//方法2：显示指定类型
+void test02()
+{
+	int a=3;
+	int b=4;
+	MySwap<int>(a,b);
+	cout<<"a="<<a<<"  b="<<b<<endl;
+}
+
+int main()
+{
+	test01();
+	test02();
+	system("pause");
+	return 0;
+}
+/*总结：
+函数模板利用关键字 template
+使用函数模板有两种方式：自动类型推导，显示指定类型
+模板的目的是为了提高复用性，将类型参数化
+*/

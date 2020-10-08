@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+
+int * func()
+{
+	//利用new关键字可以将数据开辟到堆区
+	//指针本身也是局部变量，存放在栈上，指针指向的数据放在堆区
+	int* p=new int(10);//创建好该数据后返回的是堆区的地址，因此创建int *p接收该地址
+	return p;
+}
+
+int main()
+{
+	//在堆区开辟数据
+	int *p=func();
+
+	cout<<*p<<endl;//主函数接收指针p，同时函数中的指针p被释放掉，但是p上面的内容存放在堆区，不会被释放，因此主函数中仍能访问*p
+	cout<<*p<<endl;
+	cout<<*p<<endl;
+	cout<<*p<<endl;//不会乱码
+
+	system("pause");
+
+	return 0;
+}

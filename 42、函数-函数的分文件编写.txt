@@ -1,0 +1,4 @@
+//1、创建 .h后缀名的头文件  //文件名无所谓
+//2、创建 .cpp后缀名的源文件  
+//3、在头文件中写函数声明  //#include<iostream>  using namespace std;也要写
+//4、在源文件中写函数的定义  // #include"swap.h"要写   #include<iostream>  using namespace std;也要写

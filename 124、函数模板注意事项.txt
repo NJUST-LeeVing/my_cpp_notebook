@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+template<typename T> 
+void MySwap(T &a,T &b)
+{
+	T temp=a;
+	a=b;
+	b=temp;
+}
+
+void test01()
+{
+	int a=1;
+	int b=2;
+	char c='c';
+
+	MySwap(a,b);//自动类型推导，必须推导出一致的数据类型T，才可以使用。如不能：int a; double b
+	cout<<"a="<<a<<"  b="<<b<<endl;
+
+}
+template<class T>
+void test02()//函数体中没有用到T的数据类型，所以编译器也不知道T的数据类型
+{}
+
+int main()
+{
+	test01();
+	test02<int>/*模板(函数)必须要确定出T的数据类型，才能重复使用*/();
+	system("pause");
+	return 0;
+}

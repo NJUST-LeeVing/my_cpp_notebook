@@ -1,0 +1,55 @@
+//本节目标：在一个类属性中创建另一个类对象(类似于类镶嵌类)。学会对类属性中的类对象赋值。
+//在类属性中创建类成员的方法：就像创建普通变量那样，语法格式为： 类名  对象（变量）名称
+//给类属性中的类成员赋值的注意事项：形参列表不能是变量，只能是数据。
+#include<iostream>
+using namespace std;
+#include<string>
+//类对象作为类成员
+//创建 学生 类
+class Student
+{
+	friend class Teacher;
+private:
+	string s_Name;
+	int s_Age;
+	int s_Score;
+
+};
+
+//创建 老师 类
+class Teacher
+{
+public:
+	Teacher(string name,int t_age,string s_name,int s_age,int s_score)
+	{
+		t_Name=name;
+		t_Age=t_age;
+		s.s_Age =s_age;
+		s.s_Name =s_name;
+		s.s_Score =s_score;
+	}
+
+private:
+	string t_Name;
+	int t_Age;
+	Student s;
+};
+
+void test01()
+{
+	Student s;
+	Teacher t("老李老师",39,"李文",19,100);
+	
+
+}
+
+
+int main()
+{
+
+	test01();
+	system("pause");
+
+	return 0;
+
+}

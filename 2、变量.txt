@@ -1,0 +1,24 @@
+//该视频须反复观看
+//变量的作用：给一段指定的内存起名，方便操作这段内存
+//如：int a=10; 某个内存中储存内容10，通过给该空间起名为a访问该空间，也可以通过该段内存的地址编号（通常是一段16进制的数）访问该内存
+#include<iostream>
+using namespace std;
+int main()
+{
+	//变量的定义:简单来说，变量是某段内存人为起的名字
+	//语法：数据类型  变量名 + 初始值
+	
+	/*c++中的数据类型有：
+	整型：短整型（short） 整型（int） 长整形（long） 长长整型（long long）
+	字符型（char）
+	浮点型：单精度型（float） 双精度型（double） 长双精度型（long double）
+	布尔型（bool）
+	*/
+	
+	int a = 10;
+	cout<<"a="<<a<<endl;
+	
+	system("pause");
+	
+	return 0;
+}

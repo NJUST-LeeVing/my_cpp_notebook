@@ -1,0 +1,54 @@
+//本节目标：掌握this指针的用法及原理。知道返回值和返回引用的区别：值返回会调用拷贝构造函数，返回引用则不会。
+
+#include<iostream>
+using namespace std;
+#include<string>
+
+//this指针
+class Person
+{
+public:
+	Person (int age)
+	{
+		this->m_Age=age;
+	}
+
+	Person& PersonAdd (Person &p)
+	{
+		this->m_Age +=p.m_Age;
+		cout<<"this指针的地址："<<(int)this<<endl;
+		return *this;
+		//如果返回值是值而不是指针，那么在返回值的过程中会调用拷贝构造函数，将会创建一个新的*this，而不是原先的*this
+		//为了保证对某个数据持续更改，因此返回引用。（可以认为返回引用就是返回变量本身）
+	}
+
+	int m_Age;
+};
+
+void tets01()
+{
+	Person p1(18);
+	cout<<"p1的年龄为："<<p1.m_Age <<endl; 
+}
+
+void test02()
+{
+	Person p2(20);
+	
+	Person p3(30);
+
+	p3.PersonAdd (p2).PersonAdd (p2).PersonAdd (p2);
+	cout<<"this指针的地址："<<(int)&p3<<endl;
+	
+
+}
+int main()
+{
+	test02();
+	
+
+	system("pause");
+
+	return 0;
+
+}

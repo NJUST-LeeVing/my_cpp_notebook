@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//do...while语句:先执行，再循环  while语句：先循环，再执行
+	//输入0~9这10个数字
+	int  num = 0 ;
+	do
+	{
+		cout<<num<<endl;
+		num++;
+	}
+	while(num<10);
+
+	system("pause");
+	return 0;
+}
+
+
+练习：寻找水仙花数
+#include<iostream>
+using namespace std;
+int main()
+{
+	//1、打印所有的三位数
+	int num=100;
+	do
+	{
+		int a=0;//个位
+		int b=0;//十位
+		int c=0;//百位
+
+		a=num%10;//获取个位数字
+		b=num/10%10;//获取十位数字
+		c=num/100;//获取百位数字
+
+		if(a*a*a+b*b*b+c*c*c==num)
+
+	{
+		cout<<num<<endl;
+		num++;
+		
+	}
+	while(num<1000);
+
+	//2、从所有三位数中找到水仙花数
+	
+	//如果是水仙花,则打印
+	cout<<"水仙花数有"<<num<<endl;
+	system("pause");
+	return 0;
+}

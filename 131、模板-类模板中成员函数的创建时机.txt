@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+#include<string>
+
+//类模板中的成员函数的调用时机
+class Person1
+{
+public:
+	void show01()
+	{
+		cout << "func01()的调用！" << endl;
+	}
+};
+
+class Person2
+{
+public:
+	void show02()
+	{
+		cout << "func02()的调用！" << endl;
+	}
+};
+
+template<class T>
+class MyClass
+{
+public:
+	T obj;
+	//类模板中的成员函数，并不是一开始就创建的，而是在模板调用时再生成。
+	void func01()
+	{
+		obj.show01();
+	}
+	void func02()
+	{
+		obj.show02();
+	}
+
+};
+
+void test()
+{
+	MyClass<Person1> m;
+	//此时，调用成员函数才会创建成员函数。
+	m.func01();
+	
+}
+
+int main()
+{
+	
+	system("pause");
+
+	return 0;
+}

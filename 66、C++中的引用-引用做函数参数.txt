@@ -1,0 +1,22 @@
+//学会引用作为形参的好处
+#include<iostream>
+using namespace std;
+//引用传递，形参也会修饰实参。清楚其本质！
+void swap(int &a,int &b)
+{
+	int temp=a;
+	a=b;
+	b=temp;
+}
+int main()
+{
+	int a=10;
+	int b=20;
+	swap(a,b);
+	cout<<"main函数中 a="<<a<<endl;
+	cout<<"main函数中 b="<<b<<endl;
+	
+	system("pause");
+
+	return 0;
+}

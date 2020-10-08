@@ -1,0 +1,82 @@
+#include<iostream>
+using namespace std;
+#include<string>
+class Person
+{
+public:
+	Person(string name,int age)
+	{
+		this->m_Name = name;
+		this->m_Age = age;
+	}
+	string m_Name;
+	int m_Age;
+};
+
+
+template<class T>
+bool MyCompare(T& a, T& b)
+{
+	if (a == b)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
+void test01()
+{
+	int a = 10;
+	int b = 11;
+	bool ret = MyCompare(a, b);
+	if (ret)//注意：也可以写成if (ret)
+	{
+		cout << "a==b" << endl;
+	}
+	else
+	{
+		cout << "a!=b" << endl;
+	}
+
+
+}
+
+//类似于运算符重载
+template<> bool MyCompare(Person& a, Person& b)
+{
+	if (a.m_Age == b.m_Age && a.m_Name == b.m_Name)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void test02()
+{
+	Person p1("李文", 19);
+	Person p2("赵文", 19);
+	bool ret=MyCompare(p1, p2);
+	if (ret)
+	{
+		cout << "数据完全相同！" << endl;
+	}
+	else
+	{
+		cout << "数据不完全相同！" << endl;
+	}
+}
+int main()
+{
+	test01();
+	test02();
+	system("pause");
+
+	return 0;
+}

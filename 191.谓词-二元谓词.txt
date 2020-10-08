@@ -1,0 +1,32 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+class MyCompare {
+public:
+	bool operator()(int val1, int val2) {
+		return val1 > val2;
+	}
+};
+
+void test() {
+	vector<int>v;
+	v.push_back(20);
+	v.push_back(40);
+	v.push_back(30);
+	v.push_back(10);
+	//使用仿函数改变算法的策略，变为降序排列。
+	sort(v.begin(), v.end(), MyCompare());
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << endl;
+	}
+	
+}
+
+
+int main() {
+	test();
+	system("pause");
+	return 0;
+}

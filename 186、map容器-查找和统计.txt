@@ -1,0 +1,59 @@
+#include<iostream>
+using namespace std;
+#include<map>
+
+//map容器的查找与统计
+
+
+void Find()
+{
+	map<int, int>m;
+	m.insert(pair<int, int>(1, 10));
+	m.insert(pair<int, int>(3, 30));
+	m.insert(pair<int, int>(2, 20));
+	m.insert(pair<int, int>(4, 40));
+
+	map<int, int>::iterator it = m.find(7);
+	if (it == m.end())
+	{
+		cout << "未查找到该元素！" << endl;
+	}
+	else
+	{
+		cout << "该元素的key值为：" << it->first << "  value值为：" << it->second << endl;
+	}
+
+}
+
+void Count()
+{
+	map<int, int>m;
+	m.insert(pair<int, int>(1, 10));
+	m.insert(pair<int, int>(3, 30));
+	m.insert(pair<int, int>(2, 20));
+	m.insert(pair<int, int>(4, 40));
+	m.insert(pair<int, int>(2, 20));
+	m.insert(pair<int, int>(2, 20));
+
+	int num = m.count(2);
+	if (num == 1)
+	{
+		cout << "查找到该元素，但是该元素的个数始终为1。" << endl;
+	}
+	else
+	{
+		cout << "为查找到该元素！" << endl;
+	}
+	//map不允许有重复的key值，但是multimap可以
+
+}
+
+
+int main()
+{
+
+	system("pause");
+
+	return 0;
+
+}

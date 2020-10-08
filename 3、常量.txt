@@ -1,0 +1,18 @@
+#include<iostream>
+using namespace std;
+#define Day 7   //1.宏常量
+int main()
+{
+	//Day = 8 //报错，宏常量不可修改
+	cout<<"一周有多少天？"<<Day<<"天"<<endl;
+	
+	//2.const修饰变量
+	const int month = 12;
+	//month = 24 //报错，常量不可以被修改
+	cout<<"一年有多少个月？"<<month<<"个月份"<<endl;
+
+		
+	system("pause");
+	
+	return 0;
+}

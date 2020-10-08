@@ -1,0 +1,233 @@
+#include<iostream>
+using namespace std;
+#include<string>
+#include<list>
+
+//list容器
+/*关于list的所有操作
+构造：默认构造、区间访问构造、n个elem、拷贝构造
+赋值：operator=、assign赋值（区间赋值和n个elem）
+大小：size
+插入和删除：头/尾  插/删  中间插/删	清空		
+数据获取：获取头/尾部
+反转与排序？
+*/
+
+/*关于对容器操作的几个小技巧：
+对容器中的某一个元素进行访问需要在参数列表中用迭代器	注意：list容器只能用迭代器，但是vector和deque容器由于是连续的，可以用at()函数和[]进行访问
+参数列表中第一个迭代器表示起始的位置，后面的表示终止的位置或者终止的区间。
+*/
+
+
+//人类
+class Person
+{
+public:
+	Person(string name, int age)
+	{
+		this->m_Name = name;
+		this->m_Age = age;
+	}
+
+	string m_Name;
+	int m_Age;
+
+};
+
+//打印函数
+void PrintList(const list<int>L)
+{
+	for (list<int>::const_iterator it = L.begin(); it != L.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+void PrintList(const list<Person>L)
+{
+	for (list<Person>::const_iterator it = L.begin(); it != L.end(); it++)
+	{
+		cout << "姓名：" << it->m_Name << "  年龄： " << it->m_Age << endl;
+	}
+	cout << endl;
+}
+
+//构造函数
+void Construct()
+{
+	list<int>L1;//默认构造
+	//向L1中装数据
+	for (int i = 0; i < 10; i++)
+	{
+		L1.push_back(i * 10);
+	}
+
+	//区间访问
+	list<int>::iterator it = L1.begin();
+	list<int>L2(++it,L1.end()--);
+
+	//拷贝构造
+	list<int>L3;
+	L3 = L2;
+
+	//n个elem
+	list<int>L4(10, 666);
+}
+
+//赋值函数
+void Assign()
+{
+	list<Person>L1;
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("库里", 32);
+
+	L1.push_back(p1);
+	L1.push_back(p2);
+	L1.push_back(p3);
+	PrintList(L1);
+
+	//通过operator=进行赋值
+	list<Person>L2;
+	L2 = L1;
+	PrintList(L2);
+
+	//通过assign进行赋值
+	list<Person>L3;
+	L3.assign(L2.begin(), --L2.end());
+	PrintList(L3);
+
+	//n个elem
+	list<int>L4;
+	L4.assign(10,666);
+	PrintList(L4);
+}
+
+//插入和删除
+void Insert_Delete()
+{
+	list<Person>L1;
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("库里", 32);
+
+	//尾插
+	L1.push_back(p1);
+	L1.push_back(p2);
+	cout << "尾插后：" << endl;
+	PrintList(L1);//该函数不能写在cout中，因为没有返回值
+	
+	//头插
+	L1.push_front(p3);
+	cout << "头插后：" << endl;
+	PrintList(L1);
+	
+	//尾删
+	L1.pop_back();
+	cout << "尾删后：" << endl;
+	PrintList(L1);
+
+	//头删后
+	L1.pop_front();
+	cout << "头删后：" << endl;
+	PrintList(L1);
+
+	//insert插入
+	//L1.insert(++L1.begin(), ++L1.begin(),++L1.begin());//无效操作，但不会报错
+	L1.insert(++L1.begin(), p2);
+	cout << "通过insert在第二个位置插入元素p2后：" << endl;
+	PrintList(L1);
+
+	//erase删除
+	L1.erase(++L1.begin());
+	cout << "通过erase删除第二个元素后：" << endl;
+	PrintList(L1);
+
+	//清空
+	L1.clear();
+	cout << "清空后元素为：";
+	PrintList(L1);
+}
+
+//大小操作
+void Size()
+{
+	list<Person>L1;
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("库里", 32);
+
+	L1.push_back(p1);
+	L1.push_back(p2);
+	L1.push_back(p3);
+	cout << "L1的容量是：" << L1.size() << endl;
+}
+
+//互换容器
+void Swap()
+{
+	list<Person>L1;
+	Person p1("李文", 19);
+	L1.push_back(p1);
+
+	list<Person>L2;
+	Person p2("东契奇", 21);
+	L1.push_back(p2);
+	
+	cout << "交换前";
+	cout << "L1的内容：" << endl;
+	PrintList(L1);
+	cout << "L2的内容：" << endl;
+	PrintList(L2);
+
+	L1.swap(L2);
+	cout << "交换后";
+	cout << "L1的内容：" << endl;
+	PrintList(L1);
+	cout << "L2的内容：";
+	PrintList(L2);
+}
+
+//反转
+void Reverse()
+{
+	list<Person>L1;
+	Person p1("李文", 19);
+	Person p2("东契奇", 20);
+	Person p3("库里", 32);
+
+	cout << "反转前：";
+	L1.push_back(p1);
+	L1.push_back(p2);
+	L1.push_back(p3);
+	PrintList(L1);
+
+	cout << "反转后：";
+	L1.reverse();
+	PrintList(L1);
+
+}
+
+//数据获取
+void Procurement()
+{
+	list<int>L1;
+	L1.push_back(10);
+	L1.push_back(20);
+	L1.push_back(30);
+	L1.push_back(40);
+
+	//不能让通过at()和[]进行访问
+	cout << "第一个元素为：" << L1.front() << endl;
+	cout << "最后一个元素为：" << L1.back() << endl;
+
+}
+
+
+int main()
+{
+	Procurement();
+	system("pause");
+
+	return 0;
+}

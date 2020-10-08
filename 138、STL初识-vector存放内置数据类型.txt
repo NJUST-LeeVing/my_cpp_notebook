@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>//标准算法头文件
+
+void MyPrint(int val)
+{
+	cout << val << endl;
+}
+
+void test()
+{
+	vector<int> v;
+	//向容器（数组）中存放数据
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(40);
+
+	//遍历数据
+	//方法一：
+	/*vector<int>::iterator pBegin = v.begin();
+	vector<int>::iterator pEnd = v.end();
+	while (pBegin != pEnd)
+	{
+		cout << *pBegin << endl;
+		pBegin++;
+	}*/
+
+	//方法二：
+	/*for (vector<int>::iterator it = v.begin();it!=v.end();it++)
+	{
+		cout << *it << endl;
+	}*/
+
+	//方法三：
+	//for_each(v.begin(),v.end(),MyPrint);//掌握使用方法
+
+}
+
+int main()
+{
+	test();
+	system("pause");
+
+	return 0;
+}

@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+
+class Base
+{
+public:
+
+	void func(){}
+	int m_A;
+	int m_B;
+};
+
+class Son:public Base
+{
+public:
+	
+	void func(){}
+
+	int m_A;
+	int m_B;
+	int m_C;
+};
+
+void test()
+{
+	Base b;
+	Son s;
+	s.Base::m_A  =10;
+	cout<<"BaseÖÐm_A="<<b.m_A <<endl;//ÄÄÀï´íÁË£¿
+}
+
+int main()
+{
+	test();
+	system("pause");
+	return 0;
+}

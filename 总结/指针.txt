@@ -1,0 +1,98 @@
+#include<iostream>
+using namespace std;
+
+//指针
+
+//一、指针的创建及使用
+void test01()
+{
+	int* p;//指针可以不初始化。建议没有初始化的指针要指向NULL。
+	
+	//指针的使用方法
+	int a = 10;
+	p = &a;
+
+	//修改指针指向的内容
+	*p = 20;
+}
+
+//二、指针所占的内存大小
+void test02()
+{
+	int* p;
+	//所有类型的指针都只占有4字节的空间
+	cout << sizeof(p) << endl;
+	cout << sizeof(long long*) << endl;
+}
+
+//三、关于空指针
+void tetst03()
+{
+	int* p1 = NULL;//建议没有初始化的指针都指向NULL
+
+	//指向NULL的指针不能访问其内容
+	*p1 = 100;
+
+}
+
+//四、关于野指针
+void test04()
+{
+	//让指针指向地址为15的一段未知内存
+	int* p2 = (int*)15;
+	//可以访问这段地址
+	cout << p2 << endl;
+	//但是不能访问这段地址的内容（因为内容未知）。
+	cout << *p2 << endl;
+
+	//一句话：空指针和野指针都不要随意访问。
+}
+
+//五、const修饰指针
+void test05()
+{
+	//const修饰指针。指针指向的内容不能改变，但指向的方向可以改变
+	const int* p1 = NULL;
+	*p1 = 20;
+	int a = 10;
+	p1 = &a;
+
+	//const修饰常量。指针的指向不能改变，但指向的内容可以改变。
+	int m = 10;
+	int* const p2 = &m;
+	*p2 = 500;
+	int n = 20;
+	p2 = &n;
+}
+
+//六、指针与数组
+void test06()
+{
+	int arr[10] = {0,1,2,3,4,5,6,7,8,9};
+	//指针指向的数组的地址是数组的首地址。
+	int* p = arr;
+
+	//可以利用指针的偏移访问数组中的各个元素
+	for (int i = 0; i < 10; i++)
+	{
+		cout << *p << endl;
+		p++;
+	}
+}
+
+//七、指针用于地址传递
+void func7_1(int* a, int* b) {}
+
+void func7_2()
+{
+	int a = 10;
+	int b = 20;
+	func7_1(&a, &b);
+}
+
+int main()
+{
+	system("pause");
+
+	return 0;
+}

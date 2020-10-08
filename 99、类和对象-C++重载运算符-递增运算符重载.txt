@@ -1,0 +1,86 @@
+//本节目标：掌握如何创建前置递增和后置递增函数（创建成员函数和创建全局函数）。掌握如何在函数内部实现前置递增和后置递增。
+
+#include<iostream>
+using namespace std;
+
+//递增运算符的重载
+
+class MyInteger
+{
+	
+public:
+	MyInteger()
+	{
+		m_Num=1;
+	}
+
+	////成员函数重载前置递增
+	//MyInteger& operator++()
+	//{
+	//	m_Num++;
+	//	return *this;
+	//}
+
+	////成员函数重载后置递增
+	//MyInteger& operator++(int)
+	//{
+	//	MyInteger temp=*this;
+	//	this->m_Num ++;
+	//	return *this;
+	//}
+
+
+	int m_Num;
+};
+
+//全局函数重载前置递增
+//MyInteger operator++(MyInteger myint)
+//{
+//	myint.m_Num ++;
+//	return myint;
+//}
+
+//全局函数重载后置递增
+MyInteger operator++(MyInteger &myint,int)//疑问点！
+	{
+		MyInteger temp=myint;
+		myint.m_Num ++;
+		return temp;//不能返回引用，因为引用不可以作返回值。
+	}
+
+
+//全局函数重载左移运算符
+ostream& operator<<(ostream &cout,MyInteger myint)
+{
+	cout<<myint.m_Num  ;
+	return cout;
+} 
+
+////前置递增的实现
+//void test01()
+//{
+//	MyInteger myint;
+//	
+//	cout<<++myint<<endl;
+//	//cout<<myint; 调用函数operator<<(){} 
+//	//++myint调用函数operator++(){}
+//}
+
+
+////后置递增的实现
+//void test02()
+//{
+//	MyInteger myint;
+//	cout<<myint++<<endl;
+//	cout<<myint++<<endl;
+//}
+
+int main()
+{
+	//test01();
+	//test02();
+	system("pause");
+
+	return 0;
+}
+//总结：前置递增返回引用，后置递增返回值！

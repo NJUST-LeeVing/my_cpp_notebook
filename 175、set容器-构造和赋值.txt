@@ -1,0 +1,81 @@
+#include<iostream>
+using namespace std;
+#include<set>//set和multiset都只需要包含set头文件
+#include<string>
+/*set基本概念：
+简介：所有元素都会在插入时自动被排序
+
+本质：set/multiset属于 关联式容器，低层结构是用 二叉树 实现
+
+set和multiset的区别：
+set不允许容器中有重复的元素
+multiset允许容器中有重复的元素
+*/
+
+
+//set的构造与赋值
+
+//遍历接口
+void PrintSet (const set<int>& s) {
+	for (set<int>::const_iterator it = s.begin(); it != s.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+void PrintMultiet (const multiset<int>& s) {
+	for (set<int>::const_iterator it = s.begin(); it != s.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+
+
+void Set () {
+	set<int>s1;
+
+	//插入数据 只有 insert的方式
+	s1.insert(10);
+	s1.insert(40);
+	s1.insert(30);
+	s1.insert(20);
+	s1.insert(30);
+
+	//遍历容器
+	//set容器特点一：所有元素插入式自动被排序
+	//set容器不允许插入重复值，即便插入重复数，也不会被打印出来
+	PrintSet(s1);
+
+	//拷贝构造
+	set<int>s2(s1);
+	PrintSet(s2);
+
+	//赋值操作
+	set<int>s3;
+	s3 = s1;
+	PrintSet(s3);	
+}
+
+void Multiset () {
+	multiset<int>m1;
+	m1.insert(3);
+	m1.insert(9);
+	m1.insert(4);
+	m1.insert(7);
+	m1.insert(1);
+	m1.insert(9);
+
+	PrintMultiet(m1);
+
+}
+
+int main () {
+	Multiset();
+	system("pause");
+
+	return 0;
+
+}

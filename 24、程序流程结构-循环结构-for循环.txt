@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	//for循环
+	//打印0~9
+
+	for(int i=0;/*起始表达式，创建起始值，不参加循环*/i<10;/*条件表达式*/i++/*末尾表达式*/)
+	{
+		cout<<i<<endl;
+	
+	}
+
+
+	system("pause");
+	return 0;
+}
+
+
+练习：敲桌子案例
+#include<iostream>
+using namespace std;
+int main()
+{
+	//敲桌子：从1到100，如果数字个位数含7，或十位数含7，或该数字是7的倍数，则打印“敲桌子”，其余数字正常打印
+	//1、先输入1~100
+	for(int i=1;i<100;i++)
+	{
+		//2、寻找特殊数字
+		if(i%7==0||i%10==7||i/10==7)//如果是特殊数字，则打印“敲桌子”
+		{
+			cout<<"敲桌子"<<endl;
+		}
+		
+		else //如果不是特殊数字，则正常打印
+		{
+			cout<<i<<endl;
+		
+		}
+
+	
+	}
+
+
+
+
+	system("pause");
+	return 0;
+}
